@@ -8,17 +8,19 @@ void menu(){
   textSize(25);
   text("Click anywhere to play", 168, 350);
   textSize(15);
-  text("By Fakharyar Khan and Alexander Zhou", 168, 375);
+  text("By Fakharyar Khan and Alexander Zou", 168, 375);
 }
 
 void setup(){
   size(600, 600);
-  background(255);
+  background(255, 103, 31);
 }
 
 void scenery(){
   setup();
   line(0, 4 * height / 5, width, 4 * height / 5);
+  fill(40);
+  rect(0, 4 * height / 5, width, height / 5);
 }
 
 void draw(){
