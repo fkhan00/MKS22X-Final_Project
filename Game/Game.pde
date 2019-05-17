@@ -18,6 +18,7 @@ void setup(){
 
 void scenery(){
   setup();
+  line(0, 4 * height / 5, width, 4 * height / 5);
 }
 
 void draw(){
@@ -27,7 +28,4 @@ void draw(){
     menu();}
   if(stage == 1 && mousePressed){
     scenery();
-    stage = 2;}
-   
-  
-}
+    stage = 2;}}
