@@ -46,6 +46,7 @@ void draw(){
     scenery();
     if (keyPressed && ammo.size() > 0) {
       onScreen.add(ammo.remove(0));
+      delay(75);
     }
     for (Bullet b : onScreen) {
       b.display();
