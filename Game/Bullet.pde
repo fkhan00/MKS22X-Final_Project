@@ -4,7 +4,7 @@ public class Bullet{
   
   public Bullet(int comb, float xCord, float yCord){
     damage = 1;
-    speed = 5;
+    speed = -5;
     combo = comb;
     x = xCord;
     y = yCord;

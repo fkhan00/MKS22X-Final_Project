@@ -1,4 +1,7 @@
-int stage = 1;
+int stage;
+ArrayList<Bullet> ammo;
+ArrayList<Bullet> onScreen;
+
 void menu(){
   fill(255, 165, 0);
   rect(360, 200, 300, 200);
@@ -16,11 +19,20 @@ void scenery(){
   line(0, 4 * height / 5, width, 4 * height / 5);
   fill(40);
   rect(0, 4 * height / 5, width, height / 5);
+  fill(255,0,0);
+  rect(425,450,100,100);
+  rect(450,400,50,100);
 }
 
 void setup(){
   size(1000, 600);
   background(255, 103, 31);
+  stage = 1; ammo = new ArrayList<Bullet>();
+  for (int i = 0; i < 10; i++) {
+    Bullet b = new Bullet(1,475,400);
+    ammo.add(b);
+  }
+  onScreen = new ArrayList<Bullet>();
 }
 
 void draw(){
@@ -32,5 +44,13 @@ void draw(){
   }
   if(stage == 2){
     scenery();
+    if (keyPressed && ammo.size() > 0) {
+      onScreen.add(ammo.remove(0));
+    }
+    for (Bullet b : onScreen) {
+      b.display();
+      b.move();
+    }
+    
   }
 }
