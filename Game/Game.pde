@@ -1,4 +1,4 @@
-int stage;
+int stage, timer;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 
@@ -44,13 +44,18 @@ void draw(){
   }
   if(stage == 2){
     scenery();
-    if (keyPressed && ammo.size() > 0) {
+    //text("timer: "+timer+" time: "+millis(),10,20);
+    if (keyPressed && ammo.size() > 0 && timer+250 < millis()) {
       onScreen.add(ammo.remove(0));
-      delay(75);
+      timer = millis();
     }
-    for (Bullet b : onScreen) {
+    for (int i = 0; i < onScreen.size(); i++) {
+      Bullet b = onScreen.get(i);
       b.display();
       b.move();
+      if (b.x < 0 || b.x > 1000 || b.y < 0 || b.y > 600) {
+        onScreen.remove(b); i--;
+      }
     }
     
   }
