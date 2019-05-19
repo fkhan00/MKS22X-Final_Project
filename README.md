@@ -20,3 +20,8 @@ Alex:
 Fakharyar:
 - Created Bullets class and gave it basic display method
 - Created abstract ships class with display as abstract method
+
+Sunday May 19th, 2019
+- created first child class of Ship, Drone
+- Drones go through screen from either right or left with random speeds
+- Up to ten ships can be on screen at a time
