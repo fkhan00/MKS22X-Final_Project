@@ -9,7 +9,7 @@ The starting page for the menu is the starting screen for the actual game but we
 try to make our own later on. Tomorrow we will work on the Bullet and possibly the Player class.
 We plan on finish testing for phase 1 by Sunday night.
 
-Saturday May 18th, 2019:
+Saturday May 18th, 2019: \n
 Alex:
 - Cleaned up methods and how setup/draw works. Will edit later to compensate for more code.
 - Created global instance variables for Bullet storage.
