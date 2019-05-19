@@ -16,3 +16,7 @@ Alex:
 - Cleaned up methods and how setup/draw works. Will edit later to compensate for more code.
 - Created global instance variables for Bullet storage.
 - Added shooting mechanic for gun and Bullets.
+
+Fakharyar:
+- Created Bullets class and gave it basic display method
+- Created abstract ships class with display as abstract method
