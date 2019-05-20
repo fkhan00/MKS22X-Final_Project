@@ -1,4 +1,4 @@
-int stage, timeB, timeS, spawnRate;
+int stage, timeB, timeS, spawnRate, points;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
@@ -70,6 +70,19 @@ void draw(){
         onScreen.remove(b); i--;
       }
     }
-    
+    // collision without combo, remove if inconvenient
+    for(int j = 0; j < enemies.size(); j++){
+      for(int i = 0; i < onScreen.size(); i++){
+        if((Math.abs(onScreen.get(i).x - enemies.get(j).posX) <= 30) && Math.abs(onScreen.get(i).y - enemies.get(j).posY) <= 30){
+          enemies.get(j).damaged(onScreen.get(i));
+          if(enemies.get(j).getHealth() <= 0){
+            points += enemies.remove(j).points;
+            j --;
+          }
+          onScreen.remove(i);
+          i --;
+        }
+      }
+    }
   }
 }

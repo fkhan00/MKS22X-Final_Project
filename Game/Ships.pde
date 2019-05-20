@@ -1,6 +1,6 @@
 public abstract class Ships{
   int lanes[] = {25, 75, 125, 175, 225, 300, 350};
-  float posY;
+  float posY =  lanes[(int) (Math.random() * lanes.length)];
   float posX;
   int speed, health, points;
   
@@ -21,7 +21,6 @@ public abstract class Ships{
 
 public class Drone extends Ships{
   public Drone(int vel){
-    posY = lanes[(int) (Math.random() * lanes.length)];
     if(Math.random() <= 0.5){
      posX = width - 10;
      speed = -1 * vel;
@@ -43,7 +42,7 @@ public class Drone extends Ships{
       }
       else{
         triangle(posX, posY, posX + 50 * sin(PI / 3), posY - 50 * cos(PI / 3), posX + 50 * sin(PI / 3), posY + 50* cos(PI / 3));
-  }
-}
+      }
+    }
   }
 }
