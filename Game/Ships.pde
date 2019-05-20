@@ -1,5 +1,6 @@
 public abstract class Ships{
-  float posY = (int) (Math.random() *  3 * height / 5);
+
+  float posY;
   float posX;
   int speed, health, points;
   
@@ -20,6 +21,12 @@ public abstract class Ships{
 
 public class Drone extends Ships{
   public Drone(int vel){
+      float[] arr = new float[10];
+  for(int i = 0; i < 10; i++)
+  {
+    arr[i] = (3 * i * height / 5 ) / 10;
+  }
+  posY = arr[(int)(Math.random() * arr.length)];
     if(Math.random() <= 0.5){
      posX = width - 10;
      speed = -1 * vel;
