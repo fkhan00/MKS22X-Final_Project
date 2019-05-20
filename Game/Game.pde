@@ -46,6 +46,10 @@ void draw(){
   }
   if(stage == 2){
     scenery();
+    fill(0, 255, 0);
+    textSize(32);
+    text("SCORE: " + points, 840, 40);
+    textSize(15);
     if (timeB+(spawnRate*1000) < millis()) {
       enemies.add(new Drone(5)); 
       timeB = millis();
