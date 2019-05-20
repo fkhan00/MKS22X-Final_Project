@@ -36,9 +36,14 @@ public class Drone extends Ships{
   
   public void display(){
     if(health != 0){
-    fill(0, 0, 255);
-    ellipse(posX, posY, 50.0, 50.0);
-    //triangle(posX, posY, posX + 50, posY, posX, posY - 50);
-    }      
+      fill(0, 0, 255);
+      //ellipse(posX, posY, 50.0, 50.0);
+      if(speed > 0){
+        triangle(posX, posY, posX - 50 * sin(PI / 3), posY - 50 * cos(PI / 3), posX - 50 * sin(PI / 3), posY + 50 * cos(PI / 3));
+      }
+      else{
+        triangle(posX, posY, posX + 50 * sin(PI / 3), posY - 50 * cos(PI / 3), posX + 50 * sin(PI / 3), posY + 50* cos(PI / 3));
+  }
+}
   }
 }
