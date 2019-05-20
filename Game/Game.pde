@@ -1,4 +1,4 @@
-int stage, timer;
+int stage, timeB, timeS, spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
@@ -34,6 +34,7 @@ void setup(){
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
+  spawnRate = 1;
 }
 
 void draw(){
@@ -45,10 +46,9 @@ void draw(){
   }
   if(stage == 2){
     scenery();
-    //text("timer: "+timer+" time: "+millis(),10,20);
-   for(int i = 0; i < 10 && enemies.size() < Math.random() * 20; i++){
-      Ships s = new Drone((int) (Math.random() * 5) + 10);
-      enemies.add(s);
+    if (timeB+(spawnRate*1000) < millis()) {
+      enemies.add(new Drone(5)); 
+      timeB = millis();
     }
     for(int i = enemies.size() - 1; i >=  0; i--){
       enemies.get(i).display();
@@ -57,9 +57,10 @@ void draw(){
         enemies.remove(i);
       }
     }
-    if (keyPressed && ammo.size() > 0 && timer+250 < millis()) {
+    text("timer: "+timeB+" time: "+millis(),10,20);
+    if (keyPressed && ammo.size() > 0 && timeB+250 < millis()) {
       onScreen.add(ammo.remove(0));
-      timer = millis();
+      timeB = millis();
     }
     for (int i = 0; i < onScreen.size(); i++) {
       Bullet b = onScreen.get(i);
