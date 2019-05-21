@@ -25,3 +25,9 @@ Sunday May 19th, 2019
 - created first child class of Ship, Drone
 - Drones go through screen from either right or left with random speeds
 - Up to ten ships can be on screen at a time
+
+Monday May 20th, 2019
+- adjusted flow rate of drones on screen
+- ordered drones by 6 lanes without any intersections
+- vertices of drones point towards direction they travel (now triangles)
+- bullets now collide with drones and give score
