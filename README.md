@@ -38,3 +38,12 @@ Alex:
 - fixed timing of enemy spawn
 - added basic collision --> more bullets system (2x combo)
 - spring cleaning on the code
+
+Tuesday May 21st, 2019:
+
+Alex:
+- squashed some bugs
+- more method cleanup
+- optimization on ship/bullet speed and spawning rate
+- added bullet explosions up to any number of a combo
+- added replay feature after game over
