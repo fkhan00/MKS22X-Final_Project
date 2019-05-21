@@ -21,13 +21,20 @@ Fakharyar:
 - Created Bullets class and gave it basic display method
 - Created abstract ships class with display as abstract method
 
-Sunday May 19th, 2019
+Sunday May 19th, 2019:
 - created first child class of Ship, Drone
 - Drones go through screen from either right or left with random speeds
 - Up to ten ships can be on screen at a time
 
-Monday May 20th, 2019
+Monday May 20th, 2019:
+
+Fakharyar:
 - adjusted flow rate of drones on screen
 - ordered drones by 6 lanes without any intersections
 - vertices of drones point towards direction they travel (now triangles)
 - bullets now collide with drones and give score
+
+Alex:
+- fixed timing of enemy spawn
+- added basic collision --> more bullets system (2x combo)
+- spring cleaning on the code
