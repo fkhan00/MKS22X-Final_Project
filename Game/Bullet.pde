@@ -32,7 +32,7 @@ public class Bullet{
     ArrayList<Bullet> newStuff = new ArrayList<Bullet>();
     int newComb = this.combo+1;
     for (int a = 0; a < 360; a += (360/newComb)) {
-      newStuff.add(new Bullet(newComb,x,y,6*cos(a*(PI/180)),6*sin(a*(PI/180))));
+      newStuff.add(new Bullet(newComb,x,y,5*cos(a*(PI/180)),5*sin(a*(PI/180))));
     }
     return newStuff;
   }

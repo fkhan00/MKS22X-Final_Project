@@ -32,9 +32,9 @@ void play() {
   textSize(32);
   text("SCORE: " + points, 840, 40);
   textSize(15);
-  if (timeB+(spawnRate*1000) < millis()) {
-    enemies.add(new Drone(5)); 
-    timeB = millis();
+  if (timeS+(spawnRate*1000) < millis()) {
+    enemies.add(new Drone(3)); 
+    timeS = millis();
   }
   for(int i = enemies.size() - 1; i >=  0; i--){
     enemies.get(i).display();
@@ -56,7 +56,6 @@ void play() {
       onScreen.remove(b); i--;
     }
   }
-  // collision without combo, remove if inconvenient
   for(int i = 0; i < onScreen.size() && i >= 0; i++) {
     for(int j = 0; j < enemies.size() && j >= 0; j++) {
       Ships e = enemies.get(j);
@@ -80,6 +79,26 @@ void play() {
   }
 }
 
+void GO() {
+  scenery();
+  enemies = new ArrayList<Ships>();
+  fill(0);
+  textSize(100);
+  text("GAME OVER", 0.63*width/3, height/2);
+  textSize(20);
+  text("Click to play again", width/2-110, height/2+50);
+}
+
+void restart() {
+  ammo = new ArrayList<Bullet>();
+  for (int i = 0; i < 10; i++) {
+    Bullet b = new Bullet(1,475,400,0,-10);
+    ammo.add(b);
+  }
+  onScreen = new ArrayList<Bullet>();
+  spawnRate = 1; points = 0;
+}
+
 void setup(){
   size(1000, 600);
   background(255, 103, 31);
@@ -89,7 +108,7 @@ void setup(){
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
-  spawnRate = 0.5;
+  spawnRate = 1;
 }
 
 void draw(){
@@ -103,10 +122,14 @@ void draw(){
     scenery();
     play();
     if(ammo.size() == 0 && onScreen.size() == 0){
-      enemies = new ArrayList<Ships>();
-      fill(0);
-      textSize(100);
-      text("GAME OVER", 0.63 * width / 3, height / 2);
+      stage = 3;
+    }
+  }
+  if (stage == 3) {
+    GO();
+    if (mousePressed) {
+      restart();
+      stage = 2;
     }
   }
 }
