@@ -1,4 +1,5 @@
-int stage, timeB, timeS, spawnRate, points;
+int stage, timeB, timeS, points;
+float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
@@ -83,7 +84,7 @@ void setup(){
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
-  spawnRate = 1;
+  spawnRate = 0.5;
 }
 
 void draw(){
