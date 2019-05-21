@@ -3,6 +3,7 @@ float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
+int maxCombo = 6;
 
 void menu(){
   fill(255, 165, 0);
@@ -62,11 +63,15 @@ void play() {
       Bullet b = onScreen.get(i);
       if((Math.abs(b.x-e.posX) <= 25) && Math.abs(b.y-e.posY) <= 25){
         e.health--;
-        if(e.health <= 0){
+        if(e.health <= 0 && b.combo <= maxCombo){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
           points += enemies.remove(j).points;
           if (j > 0) j--;
+        }
+        else{
+          points += enemies.remove(j).points;
+          if(j > 0) j--;
         }
         onScreen.remove(i);
         if (i > 0) i--;
@@ -97,5 +102,11 @@ void draw(){
   if(stage == 2){
     scenery();
     play();
+    if(ammo.size() == 0 && onScreen.size() == 0){
+      enemies = new ArrayList<Ships>();
+      fill(0);
+      textSize(100);
+      text("GAME OVER", 0.63 * width / 3, height / 2);
+    }
   }
 }
