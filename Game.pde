@@ -102,5 +102,11 @@ void draw(){
   if(stage == 2){
     scenery();
     play();
+    if(ammo.size() == 0 && onScreen.size() == 0){
+      enemies = new ArrayList<Ships>();
+      fill(0);
+      textSize(100);
+      text("GAME OVER", 0.63 * width / 3, height / 2);
+    }
   }
 }
