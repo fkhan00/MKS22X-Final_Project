@@ -4,6 +4,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 5;
+String troops[] = {"Drones", "Fighter"};
 
 void menu(){
   fill(255, 165, 0);
@@ -33,7 +34,13 @@ void play() {
   text("SCORE: " + points, 840, 40);
   textSize(15);
   if (timeS+(spawnRate*1000) < millis()) {
-    enemies.add(new Drone(3)); 
+    String recruit = troops[(int)(Math.random() * troops.length)];
+    if(recruit.equals("Drones")){
+      enemies.add(new Drone(3)); 
+    }
+    else if(recruit.equals("Fighter")){
+      enemies.add(new Fighter(3));
+    }
     timeS = millis();
   }
   for(int i = enemies.size() - 1; i >=  0; i--){
@@ -57,9 +64,9 @@ void play() {
     }
   }
   for(int i = 0; i < onScreen.size() && i >= 0; i++) {
-    for(int j = 0; j < enemies.size() && j >= 0; j++) {
+    for(int j = 0; j < enemies.size() && j >= 0 && i < onScreen.size(); j++) {
       Ships e = enemies.get(j);
-      Bullet b = onScreen.get(i);
+       Bullet b = onScreen.get(i);
       if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
       if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
@@ -69,10 +76,6 @@ void play() {
           for (Bullet n : stuff) {onScreen.add(n);}
           points += enemies.remove(j).points;
           if (j > 0) j--;
-        }
-        else{
-          points += enemies.remove(j).points;
-          if(j > 0) j--;
         }
         onScreen.remove(i);
         if (i > 0) i--;

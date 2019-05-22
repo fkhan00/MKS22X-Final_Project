@@ -38,3 +38,26 @@ public class Drone extends Ships{
    }
  }
 }
+
+public class Fighter extends Ships{
+  public Fighter(int vel){
+    if(Math.random() <= 0.5){
+      posX = width - 10;
+      speed = -1 * vel;
+    }
+    else{
+      posX = 10;
+      speed = vel;
+    }
+    health = 2;
+    points = 4;
+  }
+  
+ void display(){
+   if(health == 0){
+     return;
+   }
+   fill(0, 0, 255);
+   rect(posX - 15, posY - 15, 30, 30, 30);
+ }
+}
