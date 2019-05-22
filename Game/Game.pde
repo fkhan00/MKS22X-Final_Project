@@ -32,6 +32,11 @@ void play() {
   fill(0, 255, 0);
   textSize(32);
   text("SCORE: " + points, 840, 40);
+  textSize(30);
+  String left = "";
+  for(int i = 0; i < ammo.size(); i++){
+     left += "*";}
+  text(left, 40, 40);
   textSize(15);
   if (timeS+(spawnRate*1000) < millis()) {
     String recruit = troops[(int)(Math.random() * troops.length)];
