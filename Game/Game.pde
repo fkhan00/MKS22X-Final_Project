@@ -94,11 +94,11 @@ void GO() {
 void restart() {
   ammo = new ArrayList<Bullet>();
   for (int i = 0; i < 10; i++) {
-    Bullet b = new Bullet(1,475,400,0,-10);
+    Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
-  spawnRate = 1; points = 0;
+  spawnRate = 0.5; points = 0;
 }
 
 void setup(){
@@ -106,7 +106,7 @@ void setup(){
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
   for (int i = 0; i < 10; i++) {
-    Bullet b = new Bullet(1,475,400,0,-10);
+    Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
