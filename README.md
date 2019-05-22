@@ -54,3 +54,9 @@ Fakharyar:
 - added limit to number of combos possible
 
 Phase 2 has been tested and is complete.
+
+Wednesday May 22nd, 2019:
+
+Fakharyar:
+- created Fighter subclass of Ship (2 health shape of rectangle)
+- created Speedster subclass of Ship(1 health very fast)
