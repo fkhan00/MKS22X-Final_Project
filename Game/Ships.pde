@@ -28,11 +28,11 @@ public class Drone extends Ships{
    if(health != 0){
      fill(0, 0, 255);
      //ellipse(posX, posY, 50.0, 50.0);
-     if(speed > 0){
-       triangle(posX - sin(PI / 3), posY, posX - 50 * sin(PI / 3), posY - 50 * cos(PI / 3), posX - 50 * sin(PI / 3), posY + 50 * cos(PI / 3));
+     if(speed < 0){
+       triangle(posX - 25, posY, posX + 25, posY - 25, posX + 25, posY + 25);
      }
      else{
-       triangle(posX + sin(PI / 3), posY, posX + 50 * sin(PI / 3), posY - 50 * cos(PI / 3), posX + 50 * sin(PI / 3), posY + 50* cos(PI / 3));
+       triangle(posX + 25, posY, posX -25, posY + 25, posX - 25, posY - 25);
      }
    }
  }
