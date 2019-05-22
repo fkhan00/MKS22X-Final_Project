@@ -1,5 +1,5 @@
 public abstract class Ships{
-  private int lanes[] = {25, 75, 125, 175, 225, 300, 350};
+  private int lanes[] = {30, 60, 90, 120, 150, 180, 210, 240, 270, 300};
   public float posY =  lanes[(int) (Math.random() * lanes.length)];
   public float posX;
   public int speed, health, points;
@@ -28,11 +28,12 @@ public class Drone extends Ships{
    if(health != 0){
      fill(0, 0, 255);
      //ellipse(posX, posY, 50.0, 50.0);
+     int a = 15;
      if(speed < 0){
-       triangle(posX - 25, posY, posX + 25, posY - 25, posX + 25, posY + 25);
+       triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
      }
      else{
-       triangle(posX + 25, posY, posX -25, posY + 25, posX - 25, posY - 25);
+       triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
      }
    }
  }

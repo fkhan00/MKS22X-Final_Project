@@ -60,7 +60,8 @@ void play() {
     for(int j = 0; j < enemies.size() && j >= 0; j++) {
       Ships e = enemies.get(j);
       Bullet b = onScreen.get(i);
-      if((Math.abs(b.x-e.posX) <= 25) && Math.abs(b.y-e.posY) <= 25){
+      if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
+      if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
         if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
         if(e.health <= 0){
