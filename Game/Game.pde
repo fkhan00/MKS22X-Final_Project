@@ -3,7 +3,7 @@ float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
-int maxCombo = 6;
+int maxCombo = 5;
 
 void menu(){
   fill(255, 165, 0);
@@ -62,7 +62,8 @@ void play() {
       Bullet b = onScreen.get(i);
       if((Math.abs(b.x-e.posX) <= 25) && Math.abs(b.y-e.posY) <= 25){
         e.health--;
-        if(e.health <= 0 && b.combo <= maxCombo){
+        if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
+        if(e.health <= 0){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
           points += enemies.remove(j).points;
@@ -108,7 +109,7 @@ void setup(){
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
-  spawnRate = 1;
+  spawnRate = 0.5;
 }
 
 void draw(){
