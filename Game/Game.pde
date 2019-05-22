@@ -4,7 +4,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 5;
-String troops[] = {"Drones", "Fighter"};
+String troops[] = {"Drones", "Fighter", "Speedster"};
 
 void menu(){
   fill(255, 165, 0);
@@ -40,6 +40,9 @@ void play() {
     }
     else if(recruit.equals("Fighter")){
       enemies.add(new Fighter(3));
+    }
+    else if(recruit.equals("Speedster")){
+      enemies.add(new Speedster());
     }
     timeS = millis();
   }
@@ -109,7 +112,7 @@ void setup(){
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
   for (int i = 0; i < 10; i++) {
-    Bullet b = new Bullet(1,475,400,0,-15);
+    Bullet b = new Bullet(1,475,600,0,-15);
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();

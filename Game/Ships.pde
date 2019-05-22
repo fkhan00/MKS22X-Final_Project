@@ -61,3 +61,30 @@ public class Fighter extends Ships{
    rect(posX - 15, posY - 15, 30, 30, 30);
  }
 }
+
+public class Speedster extends Ships{
+  public Speedster(){
+   if(Math.random() <= 0.5){
+    posX = width - 10;
+     speed = -8;
+   }
+   else{
+     posX = 10;
+     speed = 8;
+   }
+   health = 1;
+   points = 8;
+ }
+ void display(){
+   if(health == 0){
+     return;
+   }
+   fill(0, 0, 255);
+   beginShape();
+   vertex(posX - 15, posY);
+   vertex(posX, posY + 15);
+   vertex(posX + 15, posY);
+   vertex(posX, posY - 15);
+   endShape();
+ }
+}
