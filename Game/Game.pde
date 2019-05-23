@@ -6,6 +6,7 @@ ArrayList<Ships> enemies;
 int maxCombo = 5;
 String troops[] = {"Drones", "Fighter", "Speedster"};
 
+
 void menu(){
   fill(255, 165, 0);
   rect(360, 200, 300, 200);
