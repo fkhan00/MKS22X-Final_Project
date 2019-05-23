@@ -1,16 +1,25 @@
 public abstract class Pickups{
-  float y;
+  float y, x,duration;
   int speed = 2;
   String upgrade;
-  public Pickups(String improve, float posY){
-    y = posY;
-    upgrade = improve;
-  }
   
   void move(){
     y += speed;
   }
   
   abstract void display();
+}
+
+public class DoublePoints extends Pickups{
+
+  public DoublePoints(float posX, float posY){
+    upgrade = "DoublePoints";
+    y = posY;
+    x = posX;
+    duration = 30.0;
+  }
+  void display(){
+    rect(x, y, 10, 10);
+  }
 }
   
