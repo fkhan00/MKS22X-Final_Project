@@ -19,7 +19,6 @@ public class DoublePoints extends Pickups{
     duration = 30.0;
   }
   void display(){
-    rect(x, y, 10, 10);
+    rect(x, y, 20, 20);
   }
 }
-  

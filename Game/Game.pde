@@ -6,6 +6,8 @@ ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6;
 String troops[] = {"Drones", "Fighter", "Speedster"};
+String pick[] = {"DoublePoints"};
+ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 PImage back;
 
 void menu(){
@@ -53,6 +55,14 @@ void play() {
     enemies.add(new Speedster());
     timeS = millis();
   }
+  for(int i = 0; i < enhance.size(); i++){
+    enhance.get(i).display();
+    enhance.get(i).move();
+    if(enhance.get(i).y >= 4 * height / 5){
+      enhance.remove(i);
+      i --;
+    }
+  }
   for(int i = enemies.size() - 1; i >=  0; i--){
     enemies.get(i).display();
     enemies.get(i).move();
@@ -84,6 +94,12 @@ void play() {
         if(e.health <= 0){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
+          if(enemies.get(j).type("Fighter")){
+            int index = (int)(Math.random() * pick.length);
+            if(pick[index].equals("DoublePoints")){
+              enhance.add(new DoublePoints(enemies.get(j).posX, enemies.get(j).posY));
+            }
+          }
           points += enemies.remove(j).points;
           if (j > 0) j--;
         }
@@ -118,13 +134,13 @@ void setup(){
   size(1000, 600);
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i <10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
   spawnRate = 0.5;
-  back = loadImage("background.png");
+  back = loadImage("background-1.png");
   back.resize(width,height);
 }
 

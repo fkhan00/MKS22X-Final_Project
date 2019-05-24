@@ -9,6 +9,7 @@ public abstract class Ships{
     posX += speed;
   }
   abstract void display();
+  abstract boolean type(String type);
 }
   
 public class Drone extends Ships{
@@ -41,6 +42,9 @@ public class Drone extends Ships{
      image(look, posX-15, posY-15);
    }
  }
+ boolean type(String type){
+   return type.equals("Drone");
+ }
 }
 
 public class Fighter extends Ships{
@@ -63,6 +67,9 @@ public class Fighter extends Ships{
    }
    fill(0, 0, 255);
    rect(posX - 15, posY - 15, 30, 30, 30);
+ }
+ boolean type(String type){
+   return type.equals("Fighter");
  }
 }
 
@@ -90,5 +97,8 @@ public class Speedster extends Ships{
    vertex(posX + 15, posY);
    vertex(posX, posY - 15);
    endShape();
+ }
+ boolean type(String type){
+   return type.equals("Speedster");
  }
 }
