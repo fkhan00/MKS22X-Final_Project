@@ -4,7 +4,7 @@ float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
-int maxCombo = 5;
+int maxCombo = 6;
 String troops[] = {"Drones", "Fighter", "Speedster"};
 
 
@@ -76,7 +76,7 @@ void play() {
     for(int j = 0; j < enemies.size() && j >= 0 && i < onScreen.size(); j++) {
       Ships e = enemies.get(j);
        Bullet b = onScreen.get(i);
-      if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
+      if (b.combo >= maxCombo) {b.combo = maxCombo-1;}
       if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
         if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
