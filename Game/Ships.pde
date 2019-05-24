@@ -24,20 +24,21 @@ public class Drone extends Ships{
     health = 1;
     points = 1;
     look = loadImage("drone.png");
+    look.resize(30,30);
   }
   
  public void display(){
    if(health != 0){
-     fill(0, 0, 255);
-     //ellipse(posX, posY, 50.0, 50.0);
-     int a = 15;
-     if(speed < 0){
-       triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
-     }
-     else{
-       triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
-     }
-     //image(look, posX-15, posY-15, 30, 30);
+     //fill(0, 0, 255);
+     ////ellipse(posX, posY, 50.0, 50.0);
+     //int a = 15;
+     //if(speed < 0){
+     //  triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
+     //}
+     //else{
+     //  triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
+     //}
+     image(look, posX-15, posY-15);
    }
  }
 }
