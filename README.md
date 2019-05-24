@@ -69,3 +69,15 @@ Thursday May 23rd, 2019:
 Alex:
 - fixed spawn rates
 - polished the max combo system to make values easier to follow
+
+Fakharyar:
+- created abstract Pickups class
+- created child of Pickups, DoublePoints
+
+Friday May 24th, 2019:
+
+Fakharyar:
+- made DoublePoints on screen and with multiplier effect
+- created child of Pickups, Unlimited Bullets
+
+
