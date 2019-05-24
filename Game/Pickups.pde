@@ -16,7 +16,7 @@ public class DoublePoints extends Pickups{
     upgrade = "DoublePoints";
     y = posY;
     x = posX;
-    duration = 30.0;
+    duration = 5000.0;
   }
   void display(){
     rect(x, y, 20, 20);

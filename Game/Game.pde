@@ -1,5 +1,5 @@
 int stage, points;
-int timeB, timeD, timeF, timeS;
+int timeB, timeD, timeF, timeS, timeM;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
@@ -7,8 +7,12 @@ ArrayList<Ships> enemies;
 int maxCombo = 6;
 String troops[] = {"Drones", "Fighter", "Speedster"};
 String pick[] = {"DoublePoints"};
+int multiplier = 1;
+float duration;
+ArrayList<Integer> active = new ArrayList<Integer>();
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 PImage back;
+
 
 void menu(){
   fill(255, 165, 0);
@@ -55,10 +59,26 @@ void play() {
     enemies.add(new Speedster());
     timeS = millis();
   }
+  for(int i = 0; i < active.size(); i++){
+    if(millis() - active.get(i) >= duration){
+      multiplier = 1;
+      active.remove(i);
+      i --;
+  }
+  else{
+    multiplier = 2;
+    text("Double Points", 40, height - 40);
+  }
+  }
   for(int i = 0; i < enhance.size(); i++){
     enhance.get(i).display();
     enhance.get(i).move();
     if(enhance.get(i).y >= 4 * height / 5){
+      if(enhance.get(i).upgrade.equals("DoublePoints")){
+        active.add(millis());
+        text("Double Points", 40, height - 40);
+        duration = enhance.get(i).duration;
+      }
       enhance.remove(i);
       i --;
     }
@@ -100,7 +120,7 @@ void play() {
               enhance.add(new DoublePoints(enemies.get(j).posX, enemies.get(j).posY));
             }
           }
-          points += enemies.remove(j).points;
+          points += enemies.remove(j).points * multiplier;
           if (j > 0) j--;
         }
         onScreen.remove(i);
