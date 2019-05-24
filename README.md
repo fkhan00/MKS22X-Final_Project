@@ -63,3 +63,9 @@ Fakharyar:
 
 Alex:
 - Fixed max combo system
+
+Thursday May 23rd, 2019:
+
+Alex:
+- fixed spawn rates
+- polished the max combo system to make values easier to follow
