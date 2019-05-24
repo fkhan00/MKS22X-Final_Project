@@ -3,6 +3,7 @@ public abstract class Ships{
   public float posY =  lanes[(int) (Math.random() * lanes.length)];
   public float posX;
   public int speed, health, points;
+  PImage look;
   
   public void move(){
     posX += speed;
@@ -22,6 +23,7 @@ public class Drone extends Ships{
     }
     health = 1;
     points = 1;
+    look = loadImage("drone.png");
   }
   
  public void display(){
@@ -35,6 +37,7 @@ public class Drone extends Ships{
      else{
        triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
      }
+     //image(look, posX-15, posY-15, 30, 30);
    }
  }
 }

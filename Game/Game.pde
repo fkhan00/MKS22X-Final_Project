@@ -6,7 +6,7 @@ ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6;
 String troops[] = {"Drones", "Fighter", "Speedster"};
-
+PImage back;
 
 void menu(){
   fill(255, 165, 0);
@@ -21,10 +21,11 @@ void menu(){
 }
 
 void scenery(){
-  background(255,103,31);
-  line(0, 4 * height / 5, width, 4 * height / 5);
-  fill(40);
-  rect(0, 4 * height / 5, width, height / 5);
+  //background(255,103,31);
+  image(back,0,0);
+  //line(0, 4 * height / 5, width, 4 * height / 5);
+  //fill(40);
+  //rect(0, 4 * height / 5, width, height / 5);
   fill(255,0,0);
   rect(425,450,100,100);
   rect(450,400,50,100);
@@ -123,6 +124,8 @@ void setup(){
   }
   onScreen = new ArrayList<Bullet>();
   spawnRate = 0.5;
+  back = loadImage("background.png");
+  back.resize(width,height);
 }
 
 void draw(){
