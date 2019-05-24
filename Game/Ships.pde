@@ -66,7 +66,7 @@ public class Speedster extends Ships{
   public Speedster(){
    if(Math.random() <= 0.5){
     posX = width - 10;
-     speed = -8;
+     speed = -6;
    }
    else{
      posX = 10;

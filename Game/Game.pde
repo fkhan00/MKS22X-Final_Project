@@ -1,4 +1,5 @@
-int stage, timeB, timeS, points;
+int stage, points;
+int timeB, timeD, timeF, timeS;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
@@ -39,17 +40,16 @@ void play() {
      left += "*";}
   text(left, 40, 40);
   textSize(15);
-  if (timeS+(spawnRate*1000) < millis()) {
-    String recruit = troops[(int)(Math.random() * troops.length)];
-    if(recruit.equals("Drones")){
-      enemies.add(new Drone(3)); 
-    }
-    else if(recruit.equals("Fighter")){
-      enemies.add(new Fighter(3));
-    }
-    else if(recruit.equals("Speedster")){
-      enemies.add(new Speedster());
-    }
+  if (timeD+(spawnRate*1000) < millis()) {
+    enemies.add(new Drone(3));
+    timeD = millis();
+  }
+  if (timeF+(spawnRate*10000) < millis()) {
+    enemies.add(new Fighter(3));
+    timeF = millis();
+  }
+  if (timeS+(spawnRate*15000) < millis()) {
+    enemies.add(new Speedster());
     timeS = millis();
   }
   for(int i = enemies.size() - 1; i >=  0; i--){
@@ -118,7 +118,7 @@ void setup(){
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
   for (int i = 0; i < 10; i++) {
-    Bullet b = new Bullet(1,475,600,0,-15);
+    Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
   onScreen = new ArrayList<Bullet>();
