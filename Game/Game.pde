@@ -1,14 +1,16 @@
 int stage, points;
-int timeB, timeD, timeF, timeS, timeM;
+int timeB, timeD, timeF, timeS;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6;
 String troops[] = {"Drones", "Fighter", "Speedster"};
-String pick[] = {"DoublePoints"};
+String pick[] = {"DoublePoints", "UnlimitedBullet"};
 int multiplier = 1;
 float duration;
+float timeUB;
+float durationUB;
 ArrayList<Integer> active = new ArrayList<Integer>();
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 PImage back;
@@ -59,6 +61,9 @@ void play() {
     enemies.add(new Speedster());
     timeS = millis();
   }
+  if(millis() - timeUB < durationUB){
+    text("Unlimited Bullet",40, height - 30);
+  }
   for(int i = 0; i < active.size(); i++){
     if(millis() - active.get(i) >= duration){
       multiplier = 1;
@@ -78,6 +83,10 @@ void play() {
         active.add(millis());
         text("Double Points", 40, height - 40);
         duration = enhance.get(i).duration;
+      }
+      else if(enhance.get(i).upgrade.equals("UnlimitedBullets")){
+        timeUB = millis();
+        durationUB = enhance.get(i).duration;
       }
       enhance.remove(i);
       i --;
@@ -119,6 +128,9 @@ void play() {
             if(pick[index].equals("DoublePoints")){
               enhance.add(new DoublePoints(enemies.get(j).posX, enemies.get(j).posY));
             }
+            else if(pick[index].equals("UnlimitedBullet")){
+              enhance.add(new UnlimitedBullets(enemies.get(j).posX, enemies.get(j).posY));
+            }
           }
           points += enemies.remove(j).points * multiplier;
           if (j > 0) j--;
@@ -142,7 +154,7 @@ void GO() {
 
 void restart() {
   ammo = new ArrayList<Bullet>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 30; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
@@ -154,7 +166,7 @@ void setup(){
   size(1000, 600);
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
-  for (int i = 0; i <10; i++) {
+  for (int i = 0; i <30; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
