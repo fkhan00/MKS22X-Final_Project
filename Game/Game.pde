@@ -1,5 +1,5 @@
 int stage, points;
-int timeB, timeD, timeF, timeS;
+int timeB, timeD, timeF, timeS, timeC;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
@@ -9,6 +9,7 @@ String troops[] = {"Drones", "Fighter", "Speedster"};
 String pick[] = {"DoublePoints", "UnlimitedBullet"};
 int multiplier = 1;
 float duration;
+boolean noLimit = false;
 float timeUB;
 float durationUB;
 ArrayList<Integer> active = new ArrayList<Integer>();
@@ -64,6 +65,9 @@ void play() {
   if(millis() - timeUB < durationUB){
     text("Unlimited Bullet",40, height - 30);
   }
+  else{
+    noLimit = false;
+  }
   for(int i = 0; i < active.size(); i++){
     if(millis() - active.get(i) >= duration){
       multiplier = 1;
@@ -87,6 +91,7 @@ void play() {
       else if(enhance.get(i).upgrade.equals("UnlimitedBullets")){
         timeUB = millis();
         durationUB = enhance.get(i).duration;
+        noLimit = true;
       }
       enhance.remove(i);
       i --;
@@ -100,7 +105,11 @@ void play() {
     }
   }
   //text("timer: "+timeB+" time: "+millis(),10,20);
-  if (keyPressed && ammo.size() > 0 && timeB+250 < millis()) {
+  if(keyPressed && noLimit && timeC + 250 < millis()){
+    onScreen.add(new Bullet(1,475,400,0,-15));
+    timeC = millis();
+  }
+  else if (keyPressed && ammo.size() > 0 && timeB + 250 < millis()) {
     onScreen.add(ammo.remove(0));
     timeB = millis();
   }
@@ -154,7 +163,7 @@ void GO() {
 
 void restart() {
   ammo = new ArrayList<Bullet>();
-  for (int i = 0; i < 30; i++) {
+  for (int i = 0; i < 10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
@@ -166,7 +175,7 @@ void setup(){
   size(1000, 600);
   background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
-  for (int i = 0; i <30; i++) {
+  for (int i = 0; i <10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
     ammo.add(b);
   }
