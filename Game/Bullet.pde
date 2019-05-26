@@ -9,15 +9,6 @@ public class Bullet{
     x = xCord;
     y = yCord;
   }
-  
-  public int getDamage(){
-    return damage;
-  }
-  
-  public void changeDamage(int incr){
-    damage += incr;
-  }
-  
   public void display(){
     fill(255, 0, 0);
     ellipse(x, y, 10, 10);

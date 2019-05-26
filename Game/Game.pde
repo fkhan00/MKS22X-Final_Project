@@ -1,19 +1,15 @@
 int stage, points;
-int timeB, timeD, timeF, timeS, timeC;
+int timeB, timeD, timeF, timeS;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
-int maxCombo = 6;
-String troops[] = {"Drones", "Fighter", "Speedster"};
+int maxCombo = 6,  multiplier = 1;
 String pick[] = {"DoublePoints", "UnlimitedBullet"};
-int multiplier = 1;
-float duration;
 boolean noLimit = false;
-float timeUB;
-float durationUB;
-ArrayList<Integer> active = new ArrayList<Integer>();
+//ArrayList<Integer> active = new ArrayList<Integer>();
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
+ArrayList<Pickups> active = new ArrayList<Pickups>();
 PImage back;
 
 
@@ -41,14 +37,14 @@ void scenery(){
 }
 
 void play() {
-  fill(0, 255, 0);
+  fill(0);
   textSize(32);
-  text("SCORE: " + points, 840, 40);
+  text("SCORE: " + points, 40, 40);
   textSize(30);
-  String left = "";
+  String am = "";
   for(int i = 0; i < ammo.size(); i++){
-     left += "*";}
-  text(left, 40, 40);
+     am += "*";}
+  text(am, 800, 40);
   textSize(15);
   if (timeD+(spawnRate*1000) < millis()) {
     enemies.add(new Drone(3));
@@ -62,41 +58,42 @@ void play() {
     enemies.add(new Speedster());
     timeS = millis();
   }
-  if(millis() - timeUB < durationUB){
-    text("Unlimited Bullet",40, height - 30);
-  }
-  else{
-    noLimit = false;
-  }
-  for(int i = 0; i < active.size(); i++){
-    if(millis() - active.get(i) >= duration){
-      multiplier = 1;
-      active.remove(i);
-      i --;
-  }
-  else{
-    multiplier = 2;
-    text("Double Points", 40, height - 40);
-  }
-  }
   for(int i = 0; i < enhance.size(); i++){
-    enhance.get(i).display();
-    enhance.get(i).move();
-    if(enhance.get(i).y >= 4 * height / 5){
-      if(enhance.get(i).upgrade.equals("DoublePoints")){
-        active.add(millis());
-        text("Double Points", 40, height - 40);
-        duration = enhance.get(i).duration;
+    Pickups p = enhance.get(i);
+    p.display();
+    p.move();
+    if(p.y >= 4 * height / 5){
+      if(p.upgrade.equals("DoublePoints")){
+        p.tLimit = millis()+p.duration;
+        active.add(p);
       }
-      else if(enhance.get(i).upgrade.equals("UnlimitedBullets")){
-        timeUB = millis();
-        durationUB = enhance.get(i).duration;
-        noLimit = true;
+      else if(p.upgrade.equals("UnlimitedBullets")){
+        p.tLimit = millis()+p.duration;
+        active.add(p);
       }
-      enhance.remove(i);
-      i --;
+      enhance.remove(i); i--;
     }
   }
+  
+  //FOR FUTURE PICKUPS:
+  //run through the active list, apply the method, then in the last loop check for time limit
+  noLimit = false;
+  for (int i = 0; i < active.size(); i++) {
+    if (active.get(i).upgrade.equals("UnlimitedBullets")) {noLimit = true;}
+  }
+  multiplier = 1;
+  for (int i = 0; i < active.size(); i++) {
+    if (active.get(i).upgrade.equals("DoublePoints")) {multiplier = 2;}
+  }
+  //main loop for time limits (do not need to edit)
+  for (int i = 0; i < active.size(); i++) {
+    text(active.get(i).upgrade,40,80+(i*15));
+    if (active.get(i).tLimit <= millis()) {
+      active.remove(i);
+      i--;
+    }
+  }
+  
   for(int i = enemies.size() - 1; i >=  0; i--){
     enemies.get(i).display();
     enemies.get(i).move();
@@ -105,12 +102,9 @@ void play() {
     }
   }
   //text("timer: "+timeB+" time: "+millis(),10,20);
-  if(keyPressed && noLimit && timeC + 250 < millis()){
-    onScreen.add(new Bullet(1,475,400,0,-15));
-    timeC = millis();
-  }
-  else if (keyPressed && ammo.size() > 0 && timeB + 250 < millis()) {
-    onScreen.add(ammo.remove(0));
+  if (keyPressed && ammo.size() > 0 && timeB + 250 < millis()) {
+    if (noLimit) {onScreen.add(new Bullet(1,475,400,0,-15));}
+    else {onScreen.add(ammo.remove(0));}
     timeB = millis();
   }
   for (int i = 0; i < onScreen.size(); i++) {
@@ -124,7 +118,7 @@ void play() {
   for(int i = 0; i < onScreen.size() && i >= 0; i++) {
     for(int j = 0; j < enemies.size() && j >= 0 && i < onScreen.size(); j++) {
       Ships e = enemies.get(j);
-       Bullet b = onScreen.get(i);
+      Bullet b = onScreen.get(i);
       if (b.combo >= maxCombo) {b.combo = maxCombo-1;}
       if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
@@ -132,16 +126,19 @@ void play() {
         if(e.health <= 0){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
-          if(enemies.get(j).type("Fighter")){
+          
+          //pickup drop
+          if(e.type("Fighter")){
             int index = (int)(Math.random() * pick.length);
             if(pick[index].equals("DoublePoints")){
-              enhance.add(new DoublePoints(enemies.get(j).posX, enemies.get(j).posY));
+              enhance.add(new DoublePoints(e.posX, e.posY));
             }
             else if(pick[index].equals("UnlimitedBullet")){
-              enhance.add(new UnlimitedBullets(enemies.get(j).posX, enemies.get(j).posY));
+              enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
           }
-          points += enemies.remove(j).points * multiplier;
+          
+          points += enemies.remove(j).points*multiplier;
           if (j > 0) j--;
         }
         onScreen.remove(i);
@@ -181,7 +178,7 @@ void setup(){
   }
   onScreen = new ArrayList<Bullet>();
   spawnRate = 0.5;
-  back = loadImage("background-1.png");
+  back = loadImage("background.png");
   back.resize(width,height);
 }
 
@@ -195,7 +192,7 @@ void draw(){
   if(stage == 2){
     scenery();
     play();
-    if(ammo.size() == 0 && onScreen.size() == 0){
+    if(ammo.size() == 0 && onScreen.size() == 0 && !noLimit){
       stage = 3;
     }
   }

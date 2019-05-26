@@ -1,5 +1,6 @@
 public abstract class Pickups{
-  float y, x,duration;
+  float y, x;
+  int duration, tLimit;
   int speed = 2;
   String upgrade;
   
@@ -11,15 +12,14 @@ public abstract class Pickups{
 }
 
 public class DoublePoints extends Pickups{
-
   public DoublePoints(float posX, float posY){
     upgrade = "DoublePoints";
     y = posY;
     x = posX;
-    duration = 5000.0;
+    duration = 5000;
   }
   void display(){
-    fill((float)Math.random() * 255, (float)Math.random() * 255, (float)Math.random() * 255);
+    fill(255,0,0);
     rect(x, y, 20, 20);
   }
 }
@@ -29,10 +29,10 @@ public class UnlimitedBullets extends Pickups{
      upgrade = "UnlimitedBullets";
     y = posY;
     x = posX;
-    duration = 5000.0;
+    duration = 5000;
   }
   void display(){
-    fill((float)Math.random() * 255, (float)Math.random() * 255, (float)Math.random() * 255);
+    fill(0,255,0);
     rect(x, y, 20, 20);
   }
 }

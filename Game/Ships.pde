@@ -30,16 +30,16 @@ public class Drone extends Ships{
   
  public void display(){
    if(health != 0){
-     //fill(0, 0, 255);
-     ////ellipse(posX, posY, 50.0, 50.0);
-     //int a = 15;
-     //if(speed < 0){
-     //  triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
-     //}
-     //else{
-     //  triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
-     //}
-     image(look, posX-15, posY-15);
+     fill(0, 0, 255);
+     //ellipse(posX, posY, 50.0, 50.0);
+     int a = 15;
+     if(speed < 0){
+       triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
+     }
+     else{
+       triangle(posX + a, posY, posX -a, posY + a, posX - a, posY - a);
+     }
+     //image(look, posX-15, posY-15);
    }
  }
  boolean type(String type){
