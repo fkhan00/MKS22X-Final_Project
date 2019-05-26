@@ -80,8 +80,17 @@ Fakharyar:
 - made DoublePoints on screen and with multiplier effect
 - created child of Pickups, Unlimited Bullets
 
+ALex:
+- background added
+- made sprite for ship
+
 Saturday May 25th, 2019:
+
 Fakharyar:
 - displayed Unlimited Bullets on screen and its effect
 - adjusted duration for DoublePoints and Unlimited Bullets pickup
 
+Alex:
+- major fix on crashes and pickups
+- rearranged, deleted, and fixed pickup system to allow more pickups to be implemented
+- HUD changed: score & pickups on top left, bullets left on top right
