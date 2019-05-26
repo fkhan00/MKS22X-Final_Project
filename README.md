@@ -80,4 +80,8 @@ Fakharyar:
 - made DoublePoints on screen and with multiplier effect
 - created child of Pickups, Unlimited Bullets
 
+Saturday May 25th, 2019:
+Fakharyar:
+- displayed Unlimited Bullets on screen and its effect
+- adjusted duration for DoublePoints and Unlimited Bullets pickup
 
