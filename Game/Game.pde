@@ -1,5 +1,5 @@
 int stage, points;
-int timeB, timeD, timeF, timeS;
+int timeB, timeD, timeF, timeS, timeA;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
@@ -23,7 +23,7 @@ void menu(){
   text("Click anywhere to play", 375, 350);
   textSize(15);
   text("By Fakharyar Khan and Alexander Zou", 375, 375);
-}
+  }
 
 void scenery(){
   //background(255,103,31);
@@ -57,6 +57,10 @@ void play() {
   if (timeS+(spawnRate*15000) < millis()) {
     enemies.add(new Speedster());
     timeS = millis();
+  }
+  if(timeA + (spawnRate * 30000) < millis()){
+    enemies.add(new Armada());
+    timeA = millis();
   }
   for(int i = 0; i < enhance.size(); i++){
     Pickups p = enhance.get(i);
@@ -122,7 +126,7 @@ void play() {
       if (b.combo >= maxCombo) {b.combo = maxCombo-1;}
       if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
-        if (b.combo-1 >= maxCombo) {b.combo = maxCombo;}
+        if (b.combo-1 >= maxCombo || (e.type("Speedster") && e.health <= 0)) {b.combo = maxCombo;}
         if(e.health <= 0){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
@@ -137,7 +141,11 @@ void play() {
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
           }
-          
+          if(e.type("Armada")){
+            for(int p = 0; p < onScreen.size(); p++){
+              onScreen.get(p).combo = maxCombo;
+            }
+          }
           points += enemies.remove(j).points*multiplier;
           if (j > 0) j--;
         }

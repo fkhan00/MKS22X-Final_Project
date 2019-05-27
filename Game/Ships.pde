@@ -111,3 +111,26 @@ public class Speedster extends Ships{
    return type.equals("Speedster");
  }
 }
+
+public class Armada extends Ships {
+  public Armada(){
+       if(Math.random() <= 0.5){
+     //look = loadImage("SpeedsterLeft.png");
+    posX = width - 10;
+     speed = - 1;
+   }
+   else{
+     //look = loadImage("Speedster.png");
+     posX = 10;
+     speed = 1;
+   }
+   health = 15;
+   points = 20;
+  }
+  boolean type(String type){
+    return type.equals("Armada");
+  }
+  void display(){
+    ellipse(posX, posY, 30, 30);
+  }
+}
