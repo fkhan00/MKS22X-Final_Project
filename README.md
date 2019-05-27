@@ -94,3 +94,17 @@ Alex:
 - major fix on crashes and pickups
 - rearranged, deleted, and fixed pickup system to allow more pickups to be implemented
 - HUD changed: score & pickups on top left, bullets left on top right
+
+Sunday May 26th, 2019:
+
+Fakharyar:
+- worked on sprites for Fighter and Speedster classes
+- fixed a bug on Unlimited Bullets
+
+Monday May 27th, 2019:
+
+Fakharyar:
+- gave sprites to Fighter and Speedster classes, might change later
+- when you defeat speedster, bullet's combo jumps to 6
+- created the Armada subclass of Ships 15 health, 1 speed, if killed, all onScreen bullets' combo jump to 6
+
