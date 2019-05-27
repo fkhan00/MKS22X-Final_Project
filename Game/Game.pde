@@ -7,7 +7,6 @@ ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1;
 String pick[] = {"DoublePoints", "UnlimitedBullet", "PiercingBullet"};
 boolean noLimit = false, piercing = false;
-//ArrayList<Integer> active = new ArrayList<Integer>();
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
 PImage back;
@@ -86,6 +85,7 @@ void play() {
   //FOR FUTURE PICKUPS:
   //run through the active list, apply the method, then in the last loop check for time limit
   noLimit = false;
+  piercing = false;
   for (int i = 0; i < active.size(); i++) {
     if (active.get(i).upgrade.equals("UnlimitedBullets")) {noLimit = true;}
   }
@@ -139,15 +139,15 @@ void play() {
           for (Bullet n : stuff) {onScreen.add(n);}
           
           //pickup drop
-          if(e.type("Fighter")){
+          if(e.type("Fighter") || e.type("Armada")){
             int index = (int)(Math.random() * pick.length);
             if(pick[index].equals("DoublePoints")){
               enhance.add(new DoublePoints(e.posX, e.posY));
             }
-            else if(pick[index].equals("UnlimitedBullet")){
+            else if(pick[index].equals("UnlimitedBullet") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
-            else if(pick[index].equals("PiercingBullet")){
+            else if(pick[index].equals("PiercingBullet") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new PiercingBullets(e.posX, e.posY));
             }
           }
@@ -155,6 +155,7 @@ void play() {
             for(int p = 0; p < onScreen.size(); p++){
               onScreen.get(p).combo = maxCombo;
             }
+            
           }
           points += enemies.remove(j).points*multiplier;
           if (j > 0) j--;
