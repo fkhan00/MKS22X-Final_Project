@@ -107,4 +107,5 @@ Fakharyar:
 - gave sprites to Fighter and Speedster classes, might change later
 - when you defeat speedster, bullet's combo jumps to 6
 - created the Armada subclass of Ships 15 health, 1 speed, if killed, all onScreen bullets' combo jump to 6
+- added Piercing bullet pickup. Alex's optimization made this much easier
 
