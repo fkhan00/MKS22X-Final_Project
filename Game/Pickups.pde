@@ -36,3 +36,17 @@ public class UnlimitedBullets extends Pickups{
     rect(x, y, 20, 20);
   }
 }
+
+public class PiercingBullets extends Pickups{
+  public PiercingBullets(float posX, float posY){
+    upgrade = "PiercingBullet";
+    y = posY;
+    x = posX;
+    duration = 10000;
+  }
+  
+  void display(){
+    fill(0, 255, 255);
+    rect(x, y, 20, 20);
+  }
+}

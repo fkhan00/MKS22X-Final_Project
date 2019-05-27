@@ -5,8 +5,8 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1;
-String pick[] = {"DoublePoints", "UnlimitedBullet"};
-boolean noLimit = false;
+String pick[] = {"DoublePoints", "UnlimitedBullet", "PiercingBullet"};
+boolean noLimit = false, piercing = false;
 //ArrayList<Integer> active = new ArrayList<Integer>();
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -75,6 +75,10 @@ void play() {
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
+      else if(p.upgrade.equals("PiercingBullet")){
+        p.tLimit = millis()+p.duration;
+        active.add(p);
+      }
       enhance.remove(i); i--;
     }
   }
@@ -88,6 +92,9 @@ void play() {
   multiplier = 1;
   for (int i = 0; i < active.size(); i++) {
     if (active.get(i).upgrade.equals("DoublePoints")) {multiplier = 2;}
+  }
+  for(int i = 0; i < active.size(); i++){
+    if(active.get(i).upgrade.equals("PiercingBullet")){ piercing = true;}
   }
   //main loop for time limits (do not need to edit)
   for (int i = 0; i < active.size(); i++) {
@@ -127,7 +134,7 @@ void play() {
       if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
         e.health--;
         if (b.combo-1 >= maxCombo || (e.type("Speedster") && e.health <= 0)) {b.combo = maxCombo;}
-        if(e.health <= 0){
+        if(e.health <= 0 || piercing){
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
           
@@ -139,6 +146,9 @@ void play() {
             }
             else if(pick[index].equals("UnlimitedBullet")){
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
+            }
+            else if(pick[index].equals("PiercingBullet")){
+              enhance.add(new PiercingBullets(e.posX, e.posY));
             }
           }
           if(e.type("Armada")){
