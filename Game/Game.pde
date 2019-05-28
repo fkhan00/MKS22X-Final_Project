@@ -90,7 +90,7 @@ void play() {
   //FOR FUTURE PICKUPS:
   //run through the active list, apply the method, then in the last loop check for time limit
   //EDIT: only need to run through the list once - just undo the effect before the loop and add the effect inside the loop
-  //Remember: pickups don't stack, and an effect will last for the time limit of the last pickup of that type in active[]
+  //Remember: pickup effects don't stack, and an effect will last for the time limit of the last pickup of that type in active[]
   noLimit = false;
   multiplier = 1;
   piercing = false;
@@ -110,19 +110,23 @@ void play() {
     }
   }
   
-  for(int i = enemies.size() - 1; i >=  0; i--){
+  //enemy movement (and despawn)
+  for (int i = enemies.size() - 1; i >=  0; i--) {
     enemies.get(i).display();
     enemies.get(i).move();
     if(enemies.get(i).posX >= width || enemies.get(i).posX <= 0){
       enemies.remove(i);
     }
   }
+  
+  //basic bullet firing
   //text("timer: "+timeB+" time: "+millis(),10,20);
   if (keyPressed && ammo.size() > 0 && timeB + 250 < millis()) {
     if (noLimit) {onScreen.add(new Bullet(1,475,400,0,-15));}
     else {onScreen.add(ammo.remove(0));}
     timeB = millis();
   }
+  //bullet movement
   for (int i = 0; i < onScreen.size(); i++) {
     Bullet b = onScreen.get(i);
     b.display();
@@ -131,42 +135,39 @@ void play() {
       onScreen.remove(b); i--;
     }
   }
+  
+  //enemy & bullet collisions
   for(int i = 0; i < onScreen.size() && i >= 0; i++) {
     for(int j = 0; j < enemies.size() && j >= 0 && i < onScreen.size(); j++) {
       Ships e = enemies.get(j);
       Bullet b = onScreen.get(i);
       if (b.combo >= maxCombo) {b.combo = maxCombo-1;}
-      if((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15){
+      if ((Math.abs(b.x-e.posX) <= 15) && Math.abs(b.y-e.posY) <= 15) {
         e.health--;
-        if (b.combo-1 >= maxCombo || (e.type("Speedster") && e.health <= 0)) {b.combo = maxCombo;}
-        if(e.health <= 0 || piercing){
+        if (e.health <= 0) {
+          //bullet explosion
+          if (e.type("Speedster") || e.type("Armada")) {b.combo = maxCombo-1;}
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
-          
           //pickup drop
           if(e.type("Fighter") || e.type("Armada")){
             int index = (int)(Math.random() * pick.length);
             if(pick[index].equals("DoublePoints")){
               enhance.add(new DoublePoints(e.posX, e.posY));
             }
-            else if(pick[index].equals("UnlimitedBullet") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("UnlimitedBullet") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
-            else if(pick[index].equals("PiercingBullet") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("PiercingBullet") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new PiercingBullets(e.posX, e.posY));
             }
           }
-          if(e.type("Armada")){
-            for(int p = 0; p < onScreen.size(); p++){
-              onScreen.get(p).combo = maxCombo;
-            }
-            
-          }
+          //points, killing of bullets
           points += enemies.remove(j).points*multiplier;
           if (j > 0) j--;
+          if (!piercing) {onScreen.remove(i);}
+          if (i > 0) i--;
         }
-        onScreen.remove(i);
-        if (i > 0) i--;
       }
     }
   }
