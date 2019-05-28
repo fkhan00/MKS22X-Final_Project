@@ -109,3 +109,7 @@ Fakharyar:
 - created the Armada subclass of Ships 15 health, 1 speed, if killed, all onScreen bullets' combo jump to 6
 - added Piercing bullet pickup. Alex's optimization made this much easier
 
+Alex:
+- added comments to make new additions of code much easier
+- reorganized/optimized code (and fixed bugs that came with it)
+- new pickup (yet to be implemented): more ships (spawn rate up)
