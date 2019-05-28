@@ -121,7 +121,7 @@ void play() {
   
   //basic bullet firing
   //text("timer: "+timeB+" time: "+millis(),10,20);
-  if (keyPressed && ammo.size() > 0 && timeB + 250 < millis()) {
+  if (keyPressed && timeB + 250 < millis() && (ammo.size() > 0 || noLimit)) {
     if (noLimit) {onScreen.add(new Bullet(1,475,400,0,-15));}
     else {onScreen.add(ammo.remove(0));}
     timeB = millis();
