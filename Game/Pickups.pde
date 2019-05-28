@@ -60,3 +60,15 @@ public class MoreShips extends Pickups {
     rect(x, y, 20, 20);
   }
 }
+public class OneMore extends Pickups{
+    public OneMore(float posX, float posY) {
+    upgrade = "One More";
+    y = posY; x = posX;
+    duration = 10000;
+  }
+  
+  void display() {
+    fill(173, 255, 47);
+    rect(x, y, 20, 20);
+  }
+}

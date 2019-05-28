@@ -5,7 +5,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1;
-String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets"};
+String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -81,6 +81,11 @@ void play() {
       }
       if(p.upgrade.equals("Piercing Bullets")){
         p.tLimit = millis()+p.duration;
+        active.add(p);
+      }
+      if(p.upgrade.equals("One More")){
+        p.tLimit = millis() + p.duration;
+        ammo.add(new Bullet(1,475,400,0,-15));
         active.add(p);
       }
       enhance.remove(i); i--;
@@ -161,6 +166,9 @@ void play() {
             if (pick[index].equals("Piercing Bullets") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new PiercingBullets(e.posX, e.posY));
             }
+            if(pick[index].equals("One More") || (e.type("Armada") && Math.random() <= 0.5)){
+              enhance.add(new OneMore(e.posX, e.posY));
+          }
           }
           //points, killing of bullets
           points += enemies.remove(j).points*multiplier;
