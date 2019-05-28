@@ -5,7 +5,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1;
-String pick[] = {"DoublePoints", "UnlimitedBullet", "PiercingBullet"};
+String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -71,15 +71,15 @@ void play() {
     p.display();
     p.move();
     if(p.y >= 4 * height / 5){
-      if(p.upgrade.equals("DoublePoints")){
+      if(p.upgrade.equals("Double Points")){
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
-      if(p.upgrade.equals("UnlimitedBullets")){
+      if(p.upgrade.equals("Unlimited Bullets")){
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
-      if(p.upgrade.equals("PiercingBullet")){
+      if(p.upgrade.equals("Piercing Bullets")){
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
@@ -96,9 +96,9 @@ void play() {
   piercing = false;
   for (int i = 0; i < active.size(); i++) {
     Pickups p = active.get(i);
-    if (p.upgrade.equals("UnlimitedBullets")) {noLimit = true;}
-    if (p.upgrade.equals("DoublePoints")) {multiplier = 2;}
-    if (p.upgrade.equals("PiercingBullet")) {piercing = true;}
+    if (p.upgrade.equals("Unlimited Bullets")) {noLimit = true;}
+    if (p.upgrade.equals("Double Points")) {multiplier = 2;}
+    if (p.upgrade.equals("Piercing Bullets")) {piercing = true;}
   }
   
   //main loop for pickup time limits (do not need to edit)
@@ -152,22 +152,22 @@ void play() {
           //pickup drop
           if(e.type("Fighter") || e.type("Armada")){
             int index = (int)(Math.random() * pick.length);
-            if(pick[index].equals("DoublePoints")){
+            if(pick[index].equals("Double Points")){
               enhance.add(new DoublePoints(e.posX, e.posY));
             }
-            if (pick[index].equals("UnlimitedBullet") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("Unlimited Bullets") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
-            if (pick[index].equals("PiercingBullet") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("Piercing Bullets") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new PiercingBullets(e.posX, e.posY));
             }
           }
           //points, killing of bullets
           points += enemies.remove(j).points*multiplier;
           if (j > 0) j--;
-          if (!piercing) {onScreen.remove(i);}
-          if (i > 0) i--;
         }
+        if (!piercing) {onScreen.remove(i);}
+        if (i > 0) i--;
       }
     }
   }
@@ -176,6 +176,8 @@ void play() {
 void GO() {
   scenery();
   enemies = new ArrayList<Ships>();
+  enhance = new ArrayList<Pickups>();
+  active = new ArrayList<Pickups>();
   fill(0);
   textSize(100);
   text("GAME OVER", 0.63*width/3, height/2);

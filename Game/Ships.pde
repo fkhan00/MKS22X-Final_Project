@@ -70,6 +70,8 @@ public class Fighter extends Ships{
    fill(132, 112, 255);
    //rect(posX - 15, posY - 15, 30, 30, 30);
    image(look, posX-50, posY - 50, 100, 100);
+   textSize(15);
+   text(""+health,posX,posY);
  }
  boolean type(String type){
    return type.equals("Fighter");

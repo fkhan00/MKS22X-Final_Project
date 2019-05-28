@@ -13,7 +13,7 @@ public abstract class Pickups{
 
 public class DoublePoints extends Pickups{
   public DoublePoints(float posX, float posY){
-    upgrade = "DoublePoints";
+    upgrade = "Double Points";
     y = posY;
     x = posX;
     duration = 5000;
@@ -26,7 +26,7 @@ public class DoublePoints extends Pickups{
 
 public class UnlimitedBullets extends Pickups{
    public UnlimitedBullets(float posX, float posY){
-     upgrade = "UnlimitedBullets";
+     upgrade = "Unlimited Bullets";
     y = posY;
     x = posX;
     duration = 5000;
@@ -39,7 +39,7 @@ public class UnlimitedBullets extends Pickups{
 
 public class PiercingBullets extends Pickups{
   public PiercingBullets(float posX, float posY){
-    upgrade = "PiercingBullet";
+    upgrade = "Piercing Bullets";
     y = posY;
     x = posX;
     duration = 10000;
@@ -50,3 +50,9 @@ public class PiercingBullets extends Pickups{
     rect(x, y, 20, 20);
   }
 }
+
+//public class MoreShips extends Pickups {
+//  public MoreShips(float posX, float posY) {
+//    upgrade = "More Ships";
+//    y = posY; x = posX;
+    

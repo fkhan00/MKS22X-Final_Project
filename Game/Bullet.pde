@@ -1,9 +1,8 @@
 public class Bullet{
-  public int damage, combo;
+  public int combo;
   public float x, y, speedX, speedY;
   
   public Bullet(int comb, float xCord, float yCord, float sX, float sY){
-    damage = 1;
     speedX = sX; speedY = sY;
     combo = comb;
     x = xCord;
