@@ -24,8 +24,8 @@ public class Drone extends Ships{
     }
     health = 1;
     points = 1;
-    look = loadImage("drone.png");
-    look.resize(30,30);
+    //look = loadImage("drone.png");
+    //look.resize(30,30);
   }
   
  public void display(){

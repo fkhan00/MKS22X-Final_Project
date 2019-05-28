@@ -36,6 +36,7 @@ void scenery(){
 }
 
 void play() {
+  //HUD-ing
   fill(0);
   textSize(32);
   text("SCORE: " + points, 40, 40);
@@ -45,6 +46,8 @@ void play() {
      am += "*";}
   text(am, 800, 40);
   textSize(15);
+  
+  //enemy spawning
   if (timeD+(spawnRate*1000) < millis()) {
     enemies.add(new Drone(3));
     timeD = millis();
@@ -57,10 +60,12 @@ void play() {
     enemies.add(new Speedster());
     timeS = millis();
   }
-  if(timeA + (spawnRate * 30000) < millis()){
+  if(timeA + (spawnRate*30000) < millis()){
     enemies.add(new Armada());
     timeA = millis();
   }
+  
+  //pickup movement
   for(int i = 0; i < enhance.size(); i++){
     Pickups p = enhance.get(i);
     p.display();
@@ -70,11 +75,11 @@ void play() {
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
-      else if(p.upgrade.equals("UnlimitedBullets")){
+      if(p.upgrade.equals("UnlimitedBullets")){
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
-      else if(p.upgrade.equals("PiercingBullet")){
+      if(p.upgrade.equals("PiercingBullet")){
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
@@ -84,19 +89,19 @@ void play() {
   
   //FOR FUTURE PICKUPS:
   //run through the active list, apply the method, then in the last loop check for time limit
+  //EDIT: only need to run through the list once - just undo the effect before the loop and add the effect inside the loop
+  //Remember: pickups don't stack, and an effect will last for the time limit of the last pickup of that type in active[]
   noLimit = false;
+  multiplier = 1;
   piercing = false;
   for (int i = 0; i < active.size(); i++) {
-    if (active.get(i).upgrade.equals("UnlimitedBullets")) {noLimit = true;}
+    Pickups p = active.get(i);
+    if (p.upgrade.equals("UnlimitedBullets")) {noLimit = true;}
+    if (p.upgrade.equals("DoublePoints")) {multiplier = 2;}
+    if (p.upgrade.equals("PiercingBullet")) {piercing = true;}
   }
-  multiplier = 1;
-  for (int i = 0; i < active.size(); i++) {
-    if (active.get(i).upgrade.equals("DoublePoints")) {multiplier = 2;}
-  }
-  for(int i = 0; i < active.size(); i++){
-    if(active.get(i).upgrade.equals("PiercingBullet")){ piercing = true;}
-  }
-  //main loop for time limits (do not need to edit)
+  
+  //main loop for pickup time limits (do not need to edit)
   for (int i = 0; i < active.size(); i++) {
     text(active.get(i).upgrade,40,80+(i*15));
     if (active.get(i).tLimit <= millis()) {
