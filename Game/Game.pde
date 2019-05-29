@@ -9,7 +9,7 @@ String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One 
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
-PImage back;
+PImage back, cannon;
 
 
 void menu(){
@@ -30,9 +30,11 @@ void scenery(){
   //line(0, 4 * height / 5, width, 4 * height / 5);
   //fill(40);
   //rect(0, 4 * height / 5, width, height / 5);
-  fill(255,0,0);
-  rect(425,450,100,100);
-  rect(450,400,50,100);
+  //fill(255,0,0);
+  cannon = loadImage("cannon.png");
+  image(cannon, 425, 400, 100, 100);
+  //rect(425,450,100,100);
+  //rect(450,400,50,100);
 }
 
 void play() {
