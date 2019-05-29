@@ -80,59 +80,61 @@ public class Fighter extends Ships{
 
 public class Speedster extends Ships{
   public Speedster(){
-   if(Math.random() <= 0.5){
-     look = loadImage("SpeedsterLeft.png");
-    posX = width - 10;
-     speed = -6;
-   }
-   else{
-     look = loadImage("Speedster.png");
-     posX = 10;
-     speed = 8;
-   }
-   health = 1;
-   points = 8;
- }
- void display(){
-   if(health == 0){
-     return;
-   }
-   //fill(0, 0, 255);
-   //beginShape();
-   //vertex(posX - 15, posY);
-   //vertex(posX, posY + 15);
-   //vertex(posX + 15, posY);
-   //vertex(posX, posY - 15);
-   //endShape();
-   if(speed < 0){
-     image(look, posX - 15, posY - 15, 26, 26);
-   }
-   image(look, posX-15, posY - 15, 35, 35);
- }
- boolean type(String type){
-   return type.equals("Speedster");
- }
+    if(Math.random() <= 0.5){
+      look = loadImage("SpeedsterLeft.png");
+      posX = width - 10;
+      speed = -6;
+    }
+    else{
+      look = loadImage("Speedster.png");
+      posX = 10;
+      speed = 8;
+    }
+    health = 1;
+    points = 8;
+  }
+  void display(){
+    if(health == 0){
+      return;
+    }
+    //fill(0, 0, 255);
+    //beginShape();
+    //vertex(posX - 15, posY);
+    //vertex(posX, posY + 15);
+    //vertex(posX + 15, posY);
+    //vertex(posX, posY - 15);
+    //endShape();
+    if(speed < 0){
+      image(look, posX - 15, posY - 15, 26, 26);
+    }
+    image(look, posX-15, posY - 15, 35, 35);
+  }
+  boolean type(String type){
+    return type.equals("Speedster");
+  }
 }
 
 public class Armada extends Ships {
   public Armada(){
-       if(Math.random() <= 0.5){
-     //look = loadImage("SpeedsterLeft.png");
-    posX = width - 10;
-     speed = - 1;
-   }
-   else{
-     //look = loadImage("Speedster.png");
-     posX = 10;
-     speed = 1;
-   }
-   health = 15;
-   points = 20;
+    look = loadImage("armada.png");
+    look.resize(30,30);
+    if(Math.random() <= 0.5){
+      posX = width - 10;
+      speed = - 1;
+    }
+    else{
+      //look = loadImage("Speedster.png");
+      posX = 10;
+      speed = 1;
+    }
+    health = 15;
+    points = 20;
   }
   boolean type(String type){
     return type.equals("Armada");
   }
   void display(){
-    ellipse(posX, posY, 30, 30);
+    //ellipse(posX, posY, 30, 30);
+    image(look,posX,posY);
   }
 }

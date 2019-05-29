@@ -31,7 +31,6 @@ void scenery(){
   //fill(40);
   //rect(0, 4 * height / 5, width, height / 5);
   //fill(255,0,0);
-  cannon = loadImage("cannon.png");
   image(cannon, 425, 400, 100, 100);
   //rect(425,450,100,100);
   //rect(450,400,50,100);
@@ -225,6 +224,8 @@ void setup(){
   spawnRate = 0.5;
   back = loadImage("background.png");
   back.resize(width,height);
+  cannon = loadImage("cannon.png");
+  cannon.resize(100,100);
 }
 
 void draw(){
