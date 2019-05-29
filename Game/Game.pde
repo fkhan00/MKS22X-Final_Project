@@ -4,7 +4,7 @@ float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
-int maxCombo = 6,  multiplier = 1;
+int maxCombo = 6,  multiplier = 1,  coins = 0, highScore = 0;
 String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
@@ -39,15 +39,20 @@ void scenery(){
 void play() {
   //HUD-ing
   fill(0);
+  if(points >= highScore) {
+    fill(255, 0, 0);
+    highScore = points;
+  }
   textSize(32);
   text("SCORE: " + points, 40, 40);
+  fill(0);
   textSize(30);
   String am = "Ammo Left: ";
   for(int i = 0; i < ammo.size(); i++){
      am += "*";}
   text(am, 600, 40);
   textSize(15);
-  
+  text("Coins: " + coins, 600, 60);
   //enemy spawning
   if (timeD+(spawnRate*1000) < millis()) {
     enemies.add(new Drone(3));
@@ -199,10 +204,12 @@ void GO() {
   textSize(100);
   text("GAME OVER", 0.63*width/3, height/2);
   textSize(20);
-  text("Click to play again", width/2-110, height/2+50);
+  text("High Score: " + highScore, width / 2 - 90, height /2 + 50);
+  text("Click to play again", width/2-110, height/2+70);
 }
 
 void restart() {
+  highScore = max(highScore, points);
   ammo = new ArrayList<Bullet>();
   for (int i = 0; i < 10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
