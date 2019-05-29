@@ -113,3 +113,8 @@ Alex:
 - added comments to make new additions of code much easier
 - reorganized/optimized code (and fixed bugs that came with it)
 - new pickup (yet to be implemented): more ships (spawn rate up)
+
+Tuesday May 28th, 2019:
+
+Fakharyar:
+- implemented One More Bullet pickup
