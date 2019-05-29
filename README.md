@@ -118,3 +118,7 @@ Tuesday May 28th, 2019:
 
 Fakharyar:
 - implemented One More Bullet pickup
+
+Alex:
+- minor screen display fixes
+- implemented More Ships pickup
