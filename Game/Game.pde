@@ -5,7 +5,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1;
-String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More"};
+String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -41,10 +41,10 @@ void play() {
   textSize(32);
   text("SCORE: " + points, 40, 40);
   textSize(30);
-  String am = "";
+  String am = "Ammo Left: ";
   for(int i = 0; i < ammo.size(); i++){
      am += "*";}
-  text(am, 800, 40);
+  text(am, 600, 40);
   textSize(15);
   
   //enemy spawning
@@ -83,10 +83,12 @@ void play() {
         p.tLimit = millis()+p.duration;
         active.add(p);
       }
-      if(p.upgrade.equals("One More")){
-        p.tLimit = millis() + p.duration;
-        ammo.add(new Bullet(1,475,400,0,-15));
+      if (p.upgrade.equals("More Ships")) {
+        p.tLimit = millis()+p.duration;
         active.add(p);
+      }
+      if(p.upgrade.equals("One More")){
+        ammo.add(new Bullet(1,475,400,0,-15));
       }
       enhance.remove(i); i--;
     }
@@ -99,15 +101,18 @@ void play() {
   noLimit = false;
   multiplier = 1;
   piercing = false;
+  spawnRate = 0.5;
   for (int i = 0; i < active.size(); i++) {
     Pickups p = active.get(i);
     if (p.upgrade.equals("Unlimited Bullets")) {noLimit = true;}
     if (p.upgrade.equals("Double Points")) {multiplier = 2;}
     if (p.upgrade.equals("Piercing Bullets")) {piercing = true;}
+    if (p.upgrade.equals("More Ships")) {spawnRate = 0.25;}
   }
   
   //main loop for pickup time limits (do not need to edit)
   for (int i = 0; i < active.size(); i++) {
+    fill(0);
     text(active.get(i).upgrade,40,80+(i*15));
     if (active.get(i).tLimit <= millis()) {
       active.remove(i);
@@ -168,7 +173,10 @@ void play() {
             }
             if(pick[index].equals("One More") || (e.type("Armada") && Math.random() <= 0.5)){
               enhance.add(new OneMore(e.posX, e.posY));
-          }
+            }
+            if(pick[index].equals("More Ships")){
+              enhance.add(new MoreShips(e.posX, e.posY));
+            }
           }
           //points, killing of bullets
           points += enemies.remove(j).points*multiplier;
