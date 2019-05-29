@@ -122,3 +122,9 @@ Fakharyar:
 Alex:
 - minor screen display fixes
 - implemented More Ships pickup
+
+Wednesday May 29th, 2019:
+
+Fakharyar:
+- added to HUD, now displays coins and score, indicates when highscore is broken
+- replaced shooter with a cannon image
