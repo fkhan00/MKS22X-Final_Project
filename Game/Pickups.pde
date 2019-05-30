@@ -3,6 +3,7 @@ public abstract class Pickups{
   int duration, tLimit;
   int speed = 2;
   String upgrade;
+  PImage visual;
   
   void move(){
     y += speed;
@@ -78,11 +79,12 @@ public class Coin extends Pickups {
     upgrade = "Coin";
     y = posY; x = posX;
     duration = 0;
-    amt = (int) random(10)+1;
-    //import png and resize based on amount of coins
+    amt = ((int) random(10))+1;
+    visual = loadImage("coin.png");
+    visual.resize((int)((amt/50.0)*100),(int)((amt/50.0)*100));
   }
   
   void display() {
-    //some coin png
+    image(visual,x,y);
   }
 }
