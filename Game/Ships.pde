@@ -32,7 +32,7 @@ public class Drone extends Ships{
    if(health != 0){
      fill(0, 0, 255);
      //ellipse(posX, posY, 50.0, 50.0);
-     int a = 15;
+     //int a = 15;
      //if(speed < 0){
      //  triangle(posX - a, posY, posX + a, posY - a, posX + a, posY + a);
      //}

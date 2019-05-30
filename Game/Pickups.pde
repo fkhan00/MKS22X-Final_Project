@@ -12,13 +12,13 @@ public abstract class Pickups{
   abstract void display();
 }
 
-public class DoublePoints extends Pickups{
-  public DoublePoints(float posX, float posY){
+public class DoublePoints extends Pickups {
+  public DoublePoints(float posX, float posY) {
     upgrade = "Double Points";
     y = posY; x = posX;
     duration = 5000;
   }
-  void display(){
+  void display() {
     fill(255,0,0);
     rect(x, y, 20, 20);
   }

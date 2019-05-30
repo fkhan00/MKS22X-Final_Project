@@ -89,6 +89,40 @@ void scenery(){
   //rect(450,400,50,100);
 }
 
+void shop() {
+  
+}
+
+void help() {
+  background(255, 103, 31);
+  fill(0);
+  textSize(75);
+  text("Rules:",10,70);
+  textSize(16);
+  text("Your goal is to get as highest score as possible (duh).",10,90);
+  text("When in the game, press any key to fire.",10,110);
+  text("When a bullet hits an enemy (and if this causes it to kill said enemy), it will explode into more bullets.",10,130);
+  text("The bigger the \"combo\" of explosions, more bullets will appear when exploded, up to a maximum combo.",10,150);
+  text("There are multiple types of enemies:",10,170);
+  text("The Drone: has only one health point and has a chance to drop a coin of random value. The most abundant enemy and",50,190);
+  text("will give one point when killed.",50,210);
+  text("The Fighter: has two health points and will always drop a random pickup. Gives four points.",50,230);
+  text("The Speedster: has one health point, moves quickly across the screen. When killed, all bullets of the explosion will",50,250);
+  text("instantly have the maximum combo. Gives eight points.",50,270);
+  text("The Armada: has fifteen health points, moves slowly. Killing it will drop a random pickup and give twenty points.",50,290);
+  text("The pickups:",10,310);
+  text("Red: Double Points. Your score will be doubled for the duration of the pickup. Lasts five seconds.",50,330);
+  text("Green: Unlimited Bullets. You can fire for free. Lasts five seconds.",50,350);
+  text("Cyan: Piercing Bullets. Bullets will pierce enemies and deal extra damage. Lasts ten seconds.",50,370);
+  text("White: More Ships. Spawn rate for all ships will be halved. Lasts ten seconds.",50,390);
+  text("Light Green: Extra Bullet. When picked up, you get an extra bullet to fire.",50,410);
+  text("Pickup effects will not stack and will only last as long as the last one of a type to be picked up.",10,430);
+  text("You lose when all bullets on screen are gone OR when you don't have an Unlimited Bullets pickup active.",10,450);
+  text("Good Luck. You have Only 10 Bullets.",10,480);
+  textSize(12);
+  text("Press any key to go back to the Main Menu.",10,510);
+}
+
 void play() {
   //HUD-ing
   fill(0);
@@ -286,8 +320,8 @@ void draw(){
     menu();
     //if (mousePressed) {stage = 2;}
     if (mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 2;}
-    if (mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 3;}
-    if (mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 4;}
+    if (mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 4;}
+    if (mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 3;}
   }
   
   if (stage == 2) {
@@ -299,11 +333,12 @@ void draw(){
   }
   
   if (stage == 3) {
-    background(255);
+    shop();
   }
   
   if(stage == 4) {
-    background(255);
+    help();
+    if (keyPressed) {stage = 1;}
   }
   
   if (stage == 5) {
