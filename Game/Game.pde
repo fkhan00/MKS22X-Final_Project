@@ -5,7 +5,7 @@ ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6,  multiplier = 1,  coins = 0, highScore = 0;
-String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships"};
+String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships", "Coin"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -98,6 +98,9 @@ void play() {
       if(p.upgrade.equals("One More")){
         ammo.add(new Bullet(1,475,400,0,-15));
       }
+      if(p.upgrade.equals("Coin")){
+        coins += ((Coin) p).amt;
+      }
       enhance.remove(i); i--;
     }
   }
@@ -168,6 +171,9 @@ void play() {
           ArrayList<Bullet> stuff = b.explode(e.posX,e.posY);
           for (Bullet n : stuff) {onScreen.add(n);}
           //pickup drop
+          if(e.type("Drone") && Math.random() <= 0.1){
+            enhance.add(new Coin(e.posX, e.posY));
+          }
           if(e.type("Fighter") || e.type("Armada")){
             int index = (int)(Math.random() * pick.length);
             if(pick[index].equals("Double Points")){
