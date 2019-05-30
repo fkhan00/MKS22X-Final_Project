@@ -13,14 +13,26 @@ PImage back, cannon;
 
 
 void menu(){
-  fill(255, 165, 0);
+  background(255, 103, 31);
+  //fill(255, 165, 0);
   //rect(360, 200, 300, 200);
   fill(20);
   textSize(100);
   text("Only 10 Bullets",  150, 250);
   fill(255, 165, 0);
+  if (mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360) {
+    fill(255, 255, 0);
+  }
   rect(325, 285, 90, 75);
+  fill(255, 165, 0);
+  if (mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360) {
+    fill(255, 255, 0);
+  }
   rect(425, 285, 90, 75);
+  fill(255, 165, 0);
+  if (mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360) {
+    fill(255, 255, 0);
+  }
   rect(525, 285, 90, 75);
   fill(20);
   textSize(16);
@@ -28,7 +40,42 @@ void menu(){
   text("Rules", 450, 330);
   text("Shop", 550, 330);
   text("By Fakharyar Khan and Alexander Zou", 345, 375);
+}
+
+void gameOver() {
+  highScore = max(highScore, points);
+  scenery();
+  enemies = new ArrayList<Ships>();
+  enhance = new ArrayList<Pickups>();
+  active = new ArrayList<Pickups>();
+  background(255, 103, 31);
+  fill(0);
+  textSize(100);
+  text("GAME OVER", 0.63*width/3, 2 * height/5);
+  fill(255, 165, 0);
+  if (mouseX >= 335 && mouseX <= 425 && mouseY >= 250 && mouseY <= 325) {
+    fill(255, 255, 0);
   }
+  rect(335, 250, 90, 75);
+  fill(255, 165, 0);
+  if (mouseX >= 435 && mouseX <= 525 && mouseY >= 250 && mouseY <= 325) {
+    fill(255, 255, 0);
+  }
+  rect(435, 250, 90, 75);
+  fill(255, 165, 0);
+  if (mouseX >= 535 && mouseX <= 625 && mouseY >= 250 && mouseY <= 325) {
+    fill(255, 255, 0);
+  }
+  rect(535, 250, 90, 75);
+  fill(0);
+  textSize(16);
+  text("Play Again", 340, 300);
+  text("Shop", 460, 300);
+  text("Exit", 560, 300);
+  textSize(20);
+  text("High Score: " + highScore, width / 2 - 90, height /2 + 50);
+  //text("Click to play again", width/2-110, height/2+70);
+}
 
 void scenery(){
   //background(255,103,31);
@@ -209,29 +256,6 @@ void play() {
   }
 }
 
-void GO() {
-  highScore = max(highScore, points);
-  scenery();
-  enemies = new ArrayList<Ships>();
-  enhance = new ArrayList<Pickups>();
-  active = new ArrayList<Pickups>();
-  fill(0);
-  textSize(100);
-  text("GAME OVER", 0.63*width/3, 2 * height/5);
-  fill(0, 0, 0, 0);
-  rect(335, 250, 90, 75);
-  rect(435, 250, 90, 75);
-  rect(535, 250, 90, 75);
-  fill(0);
-  textSize(16);
-  text("Play Again", 340, 300);
-  text("Shop", 460, 300);
-  text("Exit", 560, 300);
-  textSize(20);
-  text("High Score: " + highScore, width / 2 - 90, height /2 + 50);
-  text("Click to play again", width/2-110, height/2+70);
-}
-
 void restart() {
   ammo = new ArrayList<Bullet>();
   for (int i = 0; i < 10; i++) {
@@ -244,7 +268,6 @@ void restart() {
 
 void setup(){
   size(1000, 600);
-  background(255, 103, 31);
   stage = 1; ammo = new ArrayList<Bullet>(); enemies = new ArrayList<Ships>();
   for (int i = 0; i <10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
@@ -258,41 +281,16 @@ void setup(){
   cannon.resize(100,100);
 }
 
-void mouseReleased(){
-  if(stage == 5){
-    if(mouseX >= 335 && mouseX <= 425 && mouseY >= 250 && mouseY <= 325){
-      stage = 2;
-      restart();
-    }
-    else if(mouseX >= 435 && mouseX <= 525 && mouseY >= 250 && mouseY <= 325){
-      stage = 3;
-    }
-    else if(mouseX >= 535 && mouseX <= 625 && mouseY >= 250 && mouseY <= 325){
-      stage = 6;
-    }
-    return;
-  }
-  if(mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360){
-    stage = 2;
-  }
-  else if(mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360){
-    stage = 3;
-  }
-  else if(mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360){
-    stage = 4;
-  }
-}
-
 void draw(){
-  if(stage == 1){
-    //PImage menu = loadImage("Menu.png");
-    //image(menu, 0, 0, width, height);
+  if (stage == 1) {
     menu();
     //if (mousePressed) {stage = 2;}
-    mouseReleased();
+    if (mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 2;}
+    if (mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 3;}
+    if (mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 4;}
   }
   
-  if(stage == 2){
+  if (stage == 2) {
     scenery();
     play();
     if(ammo.size() == 0 && onScreen.size() == 0 && !noLimit){
@@ -300,17 +298,22 @@ void draw(){
     }
   }
   
-  if(stage == 3){
+  if (stage == 3) {
     background(255);
   }
   
-  if(stage == 4){
+  if(stage == 4) {
     background(255);
   }
   
   if (stage == 5) {
-    GO();
-    mouseReleased();
+    gameOver();
+    if (mouseX >= 335 && mouseX <= 425 && mouseY >= 250 && mouseY <= 325 && mousePressed) {
+      restart();
+      stage = 2;
+    }
+    if (mouseX >= 435 && mouseX <= 525 && mouseY >= 250 && mouseY <= 325 && mousePressed) {stage = 3;}
+    if (mouseX >= 535 && mouseX <= 625 && mouseY >= 250 && mouseY <= 325 && mousePressed) {stage = 6;}
   }
-  if(stage == 6){ exit();}
+  if (stage == 6) {exit();}
 }
