@@ -140,3 +140,8 @@ Fakharyar:
 - implemented coin pickup
 - created improved Main Screen
 - created improved Game Over Screen with option to exit sketch
+
+Alex:
+- created/implemented coin sprite
+- fixed menu issues and added effects
+- added a "how to play" page
