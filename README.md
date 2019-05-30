@@ -133,3 +133,10 @@ Alex:
 - armada ship sprite created and implemented
 - coin class created
 - some expression reorganization
+
+Thursday May 30th, 2019:
+
+Fakharyar:
+- implemented coin pickup
+- created improved Main Screen
+- created improved Game Over Screen with option to exit sketch
