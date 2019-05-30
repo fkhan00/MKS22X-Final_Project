@@ -72,3 +72,17 @@ public class OneMore extends Pickups{
     rect(x, y, 20, 20);
   }
 }
+public class Coin extends Pickups {
+  public int amt;
+  public Coin(float posX, float posY) {
+    upgrade = "Coin";
+    y = posY; x = posX;
+    duration = 0;
+    amt = (int) random(10)+1;
+    //import png and resize based on amount of coins
+  }
+  
+  void display() {
+    //some coin png
+  }
+}

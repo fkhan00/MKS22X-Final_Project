@@ -31,7 +31,7 @@ void scenery(){
   //fill(40);
   //rect(0, 4 * height / 5, width, height / 5);
   //fill(255,0,0);
-  image(cannon, 425, 400, 100, 100);
+  image(cannon, 425, 400);
   //rect(425,450,100,100);
   //rect(450,400,50,100);
 }
@@ -43,6 +43,7 @@ void play() {
     fill(255, 0, 0);
     highScore = points;
   }
+  fill(0);
   textSize(32);
   text("SCORE: " + points, 40, 40);
   fill(0);
@@ -53,6 +54,7 @@ void play() {
   text(am, 600, 40);
   textSize(15);
   text("Coins: " + coins, 600, 60);
+  
   //enemy spawning
   if (timeD+(spawnRate*1000) < millis()) {
     enemies.add(new Drone(3));
@@ -196,6 +198,7 @@ void play() {
 }
 
 void GO() {
+  highScore = max(highScore, points);
   scenery();
   enemies = new ArrayList<Ships>();
   enhance = new ArrayList<Pickups>();
@@ -209,7 +212,6 @@ void GO() {
 }
 
 void restart() {
-  highScore = max(highScore, points);
   ammo = new ArrayList<Bullet>();
   for (int i = 0; i < 10; i++) {
     Bullet b = new Bullet(1,475,400,0,-15);
