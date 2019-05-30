@@ -14,12 +14,20 @@ PImage back, cannon;
 
 void menu(){
   fill(255, 165, 0);
-  rect(360, 200, 300, 200);
+  //rect(360, 200, 300, 200);
   fill(0);
-  textSize(32);
-  text("Only 10 Bullets",  390, 265);
-  textSize(25);
-  text("Click anywhere to play", 375, 350);
+  textSize(100);
+  text("Only 10 Bullets",  150, 250);
+  fill(255, 165, 0);
+  rect(325, 285, 90, 75);
+  rect(425, 285, 90, 75);
+  rect(525, 285, 90, 75);
+  fill(0);
+  textSize(16);
+  text("Play", 350, 330);
+  textSize(16);
+  text("Instructions", 426, 330);
+  text("Shop", 550, 330);
   textSize(15);
   text("By Fakharyar Khan and Alexander Zou", 375, 375);
   }
@@ -243,21 +251,43 @@ void setup(){
   cannon.resize(100,100);
 }
 
+void mouseReleased(){
+  if(mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360){
+    stage = 2;
+  }
+  else if(mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360){
+    stage = 3;
+  }
+  else if(mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360){
+    stage = 4;
+  }
+}
 void draw(){
   if(stage == 1){
     //PImage menu = loadImage("Menu.png");
     //image(menu, 0, 0, width, height);
     menu();
-    if (mousePressed) {stage = 2;}
+    //if (mousePressed) {stage = 2;}
+    mouseReleased();
   }
+  
   if(stage == 2){
     scenery();
     play();
     if(ammo.size() == 0 && onScreen.size() == 0 && !noLimit){
-      stage = 3;
+      stage = 5;
     }
   }
-  if (stage == 3) {
+  
+  if(stage == 3){
+    background(255);
+  }
+  
+  if(stage == 4){
+    background(255);
+  }
+  
+  if (stage == 5) {
     GO();
     if (mousePressed) {
       restart();
