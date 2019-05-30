@@ -128,3 +128,8 @@ Wednesday May 29th, 2019:
 Fakharyar:
 - added to HUD, now displays coins and score, indicates when highscore is broken
 - replaced shooter with a cannon image
+
+Alex:
+- armada ship sprite created and implemented
+- coin class created
+- some expression reorganization
