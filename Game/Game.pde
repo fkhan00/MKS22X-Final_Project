@@ -1,10 +1,11 @@
-int stage, points;
+int stage, points, multiplier;
 int timeB, timeD, timeF, timeS, timeA;
 float spawnRate;
 ArrayList<Bullet> ammo;
 ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
-int maxCombo = 6,  multiplier = 1,  coins = 0, highScore = 0;
+int maxCombo = 6, coins = 0, highScore = 0, reload = 250;
+float coinMult = 1;
 String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships", "Coin"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
@@ -186,7 +187,7 @@ void play() {
         ammo.add(new Bullet(1,475,400,0,-15));
       }
       if(p.upgrade.equals("Coin")){
-        coins += ((Coin) p).amt;
+        coins += ((Coin) p).amt * coinMult;
       }
       enhance.remove(i); i--;
     }
@@ -229,7 +230,7 @@ void play() {
   
   //basic bullet firing
   //text("timer: "+timeB+" time: "+millis(),10,20);
-  if (keyPressed && timeB + 250 < millis() && (ammo.size() > 0 || noLimit)) {
+  if (keyPressed && timeB + reload < millis() && (ammo.size() > 0 || noLimit)) {
     if (noLimit) {onScreen.add(new Bullet(1,475,400,0,-15));}
     else {onScreen.add(ammo.remove(0));}
     timeB = millis();
