@@ -91,6 +91,25 @@ void scenery(){
 }
 
 void shop() {
+  background(255, 103, 31);
+  fill(0);
+  textSize(75);
+  text("Shop:",10,70);
+  textSize(25);
+  text("Coins: " + coins,10,100);
+  String s = "Bigger Max Combo: Current: " + maxCombo + "   When Upgraded: ";
+  if ((maxCombo == 10)) {s += "MAX";}
+  else {s += (maxCombo+1);}
+  text(s,10,150);
+  fill(255, 165, 0);
+  rect(650,130,100,20);
+  textSize(12); fill(0);
+  text("Upgrade",675,145);
+  //upgrade when clicked
+  textSize(25);
+  String temp;
+  if (reload == 250) {temp = "1/4 ";}
+  s = "Faster Reload Speed: Current: ";
   
 }
 
@@ -349,7 +368,7 @@ void draw(){
       stage = 2;
     }
     if (mouseX >= 435 && mouseX <= 525 && mouseY >= 250 && mouseY <= 325 && mousePressed) {stage = 3;}
-    if (mouseX >= 535 && mouseX <= 625 && mouseY >= 250 && mouseY <= 325 && mousePressed) {stage = 6;}
+    if (mouseX >= 535 && mouseX <= 625 && mouseY >= 250 && mouseY <= 325 && mousePressed) {stage = 1; delay(100);}
   }
   if (stage == 6) {exit();}
 }
