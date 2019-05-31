@@ -6,7 +6,7 @@ ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6, coins = 0, highScore = 0, reload = 250;
 float coinMult = 1;
-String pick[] = {"Double Points", "Unlimited Bullets", "Piercing Bullets", "One More", "More Ships", "Coin"};
+String pick[] = {"Double Points", "One More", "Piercing Bullets", "Unlimited Bullets"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
@@ -286,13 +286,13 @@ void play() {
             if(pick[index].equals("Double Points")){
               enhance.add(new DoublePoints(e.posX, e.posY));
             }
-            if (pick[index].equals("Unlimited Bullets") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("Unlimited Bullets")){
               enhance.add(new UnlimitedBullets(e.posX, e.posY));
             }
-            if (pick[index].equals("Piercing Bullets") || (e.type("Armada") && Math.random() <= 0.5)){
+            if (pick[index].equals("Piercing Bullets")){
               enhance.add(new PiercingBullets(e.posX, e.posY));
             }
-            if(pick[index].equals("One More") || (e.type("Armada") && Math.random() <= 0.5)){
+            if(pick[index].equals("One More")){
               enhance.add(new OneMore(e.posX, e.posY));
             }
             if(pick[index].equals("More Ships")){

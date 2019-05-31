@@ -1,4 +1,4 @@
-public abstract class Pickups{
+public class Pickups{
   float y, x;
   int duration, tLimit;
   int speed = 2;
@@ -9,8 +9,11 @@ public abstract class Pickups{
     y += speed;
   }
   
-  abstract void display();
+  void display(){
+    image(visual, x, y);
+  }
 }
+
 
 public class DoublePoints extends Pickups {
   public DoublePoints(float posX, float posY) {
@@ -18,10 +21,6 @@ public class DoublePoints extends Pickups {
     y = posY; x = posX;
     duration = 5000;
     visual = loadImage("DoublePoints.png");
-  }
-  void display() {
-    image(visual, x, y);
-    rect(x, y, 20, 20);
   }
 }
 
@@ -63,16 +62,13 @@ public class MoreShips extends Pickups {
   }
 }
 public class OneMore extends Pickups{
-    public OneMore(float posX, float posY) {
+  public OneMore(float posX, float posY) {
+    visual = loadImage("OneBullet.png");
     upgrade = "One More";
     y = posY; x = posX;
     duration = 10000;
-  }
-  
-  void display() {
-    fill(173, 255, 47);
-    rect(x, y, 20, 20);
-  }
+    }
+    
 }
 public class Coin extends Pickups {
   public int amt;
@@ -85,7 +81,4 @@ public class Coin extends Pickups {
     visual.resize((int)((amt/50.0)*100),(int)((amt/50.0)*100));
   }
   
-  void display() {
-    image(visual,x,y);
-  }
 }
