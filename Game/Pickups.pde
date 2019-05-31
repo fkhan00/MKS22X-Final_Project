@@ -17,9 +17,10 @@ public class DoublePoints extends Pickups {
     upgrade = "Double Points";
     y = posY; x = posX;
     duration = 5000;
+    visual = loadImage("DoublePoints.png");
   }
   void display() {
-    fill(255,0,0);
+    image(visual, x, y);
     rect(x, y, 20, 20);
   }
 }
