@@ -145,3 +145,17 @@ Alex:
 - created/implemented coin sprite
 - fixed menu issues and added effects
 - added a "how to play" page
+
+Friday May 31st, 2019:
+
+Fakharyar:
+- made sprites for One More Bullet and double points pickup
+- changed class structure in pickups
+
+
+
+Saturday April 1st, 2019:
+
+Fakharyar:
+- finished sprites for pickups
+- fixed bug on Speedster's speed
