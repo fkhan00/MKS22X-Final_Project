@@ -26,13 +26,10 @@ public class DoublePoints extends Pickups {
 
 public class UnlimitedBullets extends Pickups{
   public UnlimitedBullets(float posX, float posY){
+    visual = loadImage("UnlimitedBullets.png");
     upgrade = "Unlimited Bullets";
     y = posY; x = posX;
     duration = 5000;
-  }
-  void display(){
-    fill(0,255,0);
-    rect(x, y, 20, 20);
   }
 }
 
