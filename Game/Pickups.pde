@@ -35,27 +35,20 @@ public class UnlimitedBullets extends Pickups{
 
 public class PiercingBullets extends Pickups{
   public PiercingBullets(float posX, float posY){
+    visual = loadImage("PiercingBullet.png");
     upgrade = "Piercing Bullets";
     y = posY; x = posX;
     duration = 10000;
   }
   
-  void display(){
-    fill(0, 255, 255);
-    rect(x, y, 20, 20);
-  }
 }
 
 public class MoreShips extends Pickups {
   public MoreShips(float posX, float posY) {
+    visual = loadImage("MoreShips.png");
     upgrade = "More Ships";
     y = posY; x = posX;
     duration = 10000;
-  }
-  
-  void display() {
-    fill(255);
-    rect(x, y, 20, 20);
   }
 }
 public class OneMore extends Pickups{

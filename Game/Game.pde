@@ -6,7 +6,7 @@ ArrayList<Bullet> onScreen;
 ArrayList<Ships> enemies;
 int maxCombo = 6, coins = 0, highScore = 0, reload = 250;
 float coinMult = 1;
-String pick[] = {"Double Points", "One More", "Piercing Bullets", "Unlimited Bullets"};
+String pick[] = {"Double Points", "One More", "Piercing Bullets", "Unlimited Bullets", "More Ships"};
 boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
