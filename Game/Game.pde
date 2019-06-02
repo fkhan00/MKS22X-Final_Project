@@ -96,19 +96,24 @@ void shop() {
   textSize(75);
   text("Shop:",10,70);
   textSize(25);
-  text("Coins: " + coins,10,100);
+  text("Coins: " + coins,10,105);
   
   //maxCombo upgrade
   String s = "Bigger Max Combo: Current: "+maxCombo+"   When Upgraded: ";
   if ((maxCombo == 10)) {s += "MAX";}
   else {s += (maxCombo+1);}
   text(s,10,150);
-  fill(255, 165, 0); rect(650,130,130,20);
+  fill(255, 165, 0);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 130 && mouseY <= 150) {fill(255,255,0);}
+  rect(850,130,130,20);
   textSize(12); fill(0);
   if (maxCombo < 10) {upC = (maxCombo-5)*50;}
   else {upC = 0;}
-  text("Upgrade Cost: "+upC,660,145);
-  //upgrade when clicked
+  text("Upgrade Cost: "+upC,860,145);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 130 && mouseY <= 150 && mousePressed && coins >= upC && maxCombo < 10) {
+    maxCombo++; coins -= upC;
+    delay(100);
+  }
   
   //reload upgrade
   textSize(25);
@@ -120,13 +125,20 @@ void shop() {
   if (reload == 125) {s += "MAX";}
   else {s += upRNext+"sec";}
   text(s,10,200);
-  fill(255, 165, 0); rect(800,180,130,20);
+  fill(255, 165, 0);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 180 && mouseY <= 200) {fill(255,255,0);}
+  rect(850,180,130,20);
   textSize(12); fill(0);
   if (reload == 250) {upR = 100;}
   else if (reload == 200) {upR = 200;}
   else {upR = 0;}
-  text("Upgrade Cost: "+upR,810,195);
-  //upgrade
+  text("Upgrade Cost: "+upR,860,195);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 180 && mouseY <= 200 && mousePressed && coins >= upR && reload != 125) {
+    if (reload == 250) {reload = 200;}
+    else if (reload == 200) {reload = 125;}
+    coins -= upR;
+    delay(100);
+  }
   
   //coinMult upgrade
   textSize(25);
@@ -134,12 +146,20 @@ void shop() {
   if (coinMult == 2.0) {s += "MAX";}
   else {s += (coinMult+0.25);}
   text(s,10,250);
-  fill(255, 165, 0); rect(670,230,130,20);
+  fill(255, 165, 0);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 230 && mouseY <= 250) {fill(255,255,0);}
+  rect(850,230,130,20);
   textSize(12); fill(0);
   if (coinMult < 2) {upM = (int) ((coinMult-0.75)*100);}
   else {upM = 0;}
-  text("Upgrade Cost: "+upM,680,245);
-  //upgrade
+  text("Upgrade Cost: "+upM,860,245);
+  if (mouseX >= 850 && mouseX <= 980 && mouseY >= 230 && mouseY <= 250 && mousePressed && coins >= upM && coinMult < 2) {
+     coinMult += 0.25; coins -= upM;
+     delay(100);
+  }
+  
+  fill(0); textSize(15);
+  text("Press any key to go back to the menu.",10,500);
 }
 
 void help() {
@@ -383,6 +403,7 @@ void draw(){
   
   if (stage == 3) {
     shop();
+    if (keyPressed) {stage = 1;}
   }
   
   if(stage == 4) {
