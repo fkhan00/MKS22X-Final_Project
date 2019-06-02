@@ -154,8 +154,14 @@ Fakharyar:
 
 
 
-Saturday April 1st, 2019:
+Saturday June 1st, 2019:
 
 Fakharyar:
 - finished sprites for pickups
 - fixed bug on Speedster's speed
+
+Sunday June 2nd, 2019:
+
+Alex:
+- finished menu for the shop
+- implemented upgrade system
