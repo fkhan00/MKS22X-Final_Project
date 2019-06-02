@@ -1,4 +1,10 @@
 # MKS22X-Final_Project
+
+Project Description
+
+This is a game where the player controls a large cannon and shoots at things flying in the air, where every kill creates a group of more projectiles to kill even more enemies. There is a limited amount of ammo per round, so the game is based around how much of a combo a player can achieve using those set amount of bullets and what they hit with them. We also plan on implementing the game’s two player mode which has several modes like the One Bullet Mode, a mode where both players only have one bullet each. There is also an upgrade system for things like bullet speed, max combo, and damage.
+
+
 Daily Log
 
 Friday May 17th, 2019:
