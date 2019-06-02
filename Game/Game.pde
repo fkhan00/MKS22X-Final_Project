@@ -11,7 +11,7 @@ boolean noLimit = false, piercing = false;
 ArrayList<Pickups> enhance = new ArrayList<Pickups>();
 ArrayList<Pickups> active = new ArrayList<Pickups>();
 PImage back, cannon;
-
+int upC, upR, upM;
 
 void menu(){
   background(255, 103, 31);
@@ -97,20 +97,49 @@ void shop() {
   text("Shop:",10,70);
   textSize(25);
   text("Coins: " + coins,10,100);
-  String s = "Bigger Max Combo: Current: " + maxCombo + "   When Upgraded: ";
+  
+  //maxCombo upgrade
+  String s = "Bigger Max Combo: Current: "+maxCombo+"   When Upgraded: ";
   if ((maxCombo == 10)) {s += "MAX";}
   else {s += (maxCombo+1);}
   text(s,10,150);
-  fill(255, 165, 0);
-  rect(650,130,100,20);
+  fill(255, 165, 0); rect(650,130,130,20);
   textSize(12); fill(0);
-  text("Upgrade",675,145);
+  if (maxCombo < 10) {upC = (maxCombo-5)*50;}
+  else {upC = 0;}
+  text("Upgrade Cost: "+upC,660,145);
   //upgrade when clicked
-  textSize(25);
-  String temp;
-  if (reload == 250) {temp = "1/4 ";}
-  s = "Faster Reload Speed: Current: ";
   
+  //reload upgrade
+  textSize(25);
+  String temp, upRNext = "";
+  if (reload == 125) {temp = "1/8";}
+  else if (reload == 200) {temp = "1/5"; upRNext = "1/8";}
+  else {temp = "1/4"; upRNext = "1/5";}
+  s = "Faster Reload Speed: Current: "+temp+"sec"+"   When Upgraded: ";
+  if (reload == 125) {s += "MAX";}
+  else {s += upRNext+"sec";}
+  text(s,10,200);
+  fill(255, 165, 0); rect(800,180,130,20);
+  textSize(12); fill(0);
+  if (reload == 250) {upR = 100;}
+  else if (reload == 200) {upR = 200;}
+  else {upR = 0;}
+  text("Upgrade Cost: "+upR,810,195);
+  //upgrade
+  
+  //coinMult upgrade
+  textSize(25);
+  s = "Coin Multiplier: Current: "+coinMult+"   When Upgraded: ";
+  if (coinMult == 2.0) {s += "MAX";}
+  else {s += (coinMult+0.25);}
+  text(s,10,250);
+  fill(255, 165, 0); rect(670,230,130,20);
+  textSize(12); fill(0);
+  if (coinMult < 2) {upM = (int) ((coinMult-0.75)*100);}
+  else {upM = 0;}
+  text("Upgrade Cost: "+upM,680,245);
+  //upgrade
 }
 
 void help() {
