@@ -255,7 +255,7 @@ void play() {
         ammo.add(new Bullet(1,475,400,0,-15));
       }
       if(p.upgrade.equals("Coin")){
-        coins += ((Coin) p).amt * coinMult;
+        coins += (int) (((Coin) p).amt * coinMult);
       }
       enhance.remove(i); i--;
     }
@@ -388,7 +388,10 @@ void draw(){
   if (stage == 1) {
     menu();
     //if (mousePressed) {stage = 2;}
-    if (mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 2;}
+    if (mouseX >= 325 && mouseX <= 415 && mouseY >= 285 && mouseY <= 360 && mousePressed) {
+      restart();
+      stage = 2;
+    }
     if (mouseX >= 425 && mouseX <= 515 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 4;}
     if (mouseX >= 525 && mouseX <= 615 && mouseY >= 285 && mouseY <= 360 && mousePressed) {stage = 3;}
   }
