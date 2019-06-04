@@ -5,8 +5,7 @@
 This is a game where the player controls a large cannon and shoots at enemy ships flying in the air, where every kill creates a group of more projectiles to kill even more enemies. The player only has 10 bullets per round, so the game is based around how many ships the player can destroy before time runs out. Destroying certain ships causes them to release pickups that are temporary effects that help the player like having unlimited bullets or launching a wave of enemy ships. Some ships also release coins which you can use to purchase upgrades at the shop for things like your cannon's reload speed or a higher max combo. 
 
 # Directions
-Controls:
-Press any key to have your cannon fire at a ship. 
+Open up any processing file (those are the files with the .pde extension) and click the play button on the top left. Controls are in the help section of the menu. Click to navigate around it.
 
 # Daily Log
 
